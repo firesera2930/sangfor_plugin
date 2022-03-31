@@ -1,0 +1,638 @@
+/*
+ Localizable.strings
+ AppDirect
+ 
+ Created by sangfor on 15/1/20.
+ Copyright (c) 2015年 sangfor. All rights reserved.
+ */
+"auth_acount" = "Account";
+
+/* 证书 */
+"auth_certificate" = "Certificate";
+
+/* 用户名 */
+"auth_username" = "Username";
+
+/* 请输入用户名 */
+"auth_username_placeholder" = "Username";
+
+/* 密码 */
+"auth_password" = "Password";
+
+/* 请输入密码 */
+"auth_password_placeholder" = "Password";
+
+/* 选择证书 */
+"select_cert" = "Select Certificate";
+
+/* 证书密码 */
+"cert_pass" = "Please enter certificate password";
+
+/* 完成 */
+"complete" = "Done";
+
+/* 返回 */
+"return" = "Back";
+
+/* 提示 */
+"tip" = "Tips";
+
+/* 取消 */
+"cancel" = "Cancel";
+
+/* 退出 */
+"exit" = "Exit";
+
+/* 确定 */
+"confirm" = "OK";
+
+/* 登录 */
+"login_btn" = "Sign In";
+
+/* 记住密码 */
+"remember_passwd_checkbox" = "Remember me";
+
+/* 自动登录 */
+"auto_login_checkbox" = "Auto login";
+
+/* 正在登录... */
+"auth_waiting" = "Signing in...";
+
+/* 正在连接VPN提示 */
+"vpn_connecting" = "Connecting...";
+
+/* 重连 */
+"reconnect" = "Reconnect";
+
+/* 短信认证 */
+"sms_cert_auth" = "SMS Authentication";
+
+/* 挑战认证 */
+"radius_auth" = "Challenge Authentication";
+
+/* 令牌认证 */
+"token_auth" = "Token Based Authentication";
+
+/* 如何导入证书? */
+"how_to_import_cert" = "How to Import Certificate?";
+
+/* 请选择证书后登录 */
+"please_select_cert" = "Please select a certificate. ";
+
+/* 证书文件不存在 */
+"cert_not_found" = "Certificate file does not exist";
+
+/* 从iTunes导入证书 */
+"cert_help_title" = "Import Certificate From iTunes";
+
+/* 错误提示 */
+"error_tip" = "Error";
+
+/* 请输入用户名,否则无法登录 */
+"need_username" = "Please enter username.";
+
+/*网络不可用提示*/
+"network_connect_failed" = "Network is disconnected. Please check the network settings.";
+
+/*地址访问出错*/
+"addr_access_failed" = "Access failed. Please check whether the address is correct.";
+
+/*网络超时*/
+"network_request_timeout" = "Connecting network timed out. Please check network settings.";
+
+/*连接被远程服务器拒绝*/
+"network_connect_refuse" = "Unable to connect to server. Please check whether the address is correct.";
+
+/*输入地址不正确*/
+"addr_input_false" = "Address is incorrect. Please enter a valid address.";
+
+/*未知错误*/
+"addr_unknown_error" = "Unknown error occurred. Please check whether the address is correct.";
+
+/*地址栏不为空*/
+"addr_input_null" = "Please enter address.";
+
+/*vpn不可达*/
+"vpn_connect_failed" = "Connecting failed. Please check whether the server works well.";
+
+/* 公有用户不支持此类组合认证 */
+"configure_error" = "Public account does not support such combination of authentication methods. ";
+
+/* 重新获取验证码 */
+"re_get_sms_code" = "Send Again";
+
+/* 重新获取 */
+"reget_rnd_img" = "Change";
+
+/* 请输入动态口令: */
+"token_tip" = "Passcode: ";
+
+/* 图形验证码 */
+"randcode_title" = "Word Verification";
+
+/* 验证码不能为空*/
+"need_randcode" = "Please enter the word you see in the picture.";
+
+/* 请输入图中的字符后点击完成 */
+"rnd_page_title" = "Enter the word you see below";
+
+/* 暂不支持硬件特征码认证 */
+"hardid_not_support" = "Hardware ID based authentication is not supported currently.";
+
+/* 您的短信码仍在有效期内 */
+"sms_still_valid" = "The previous SMS code is still valid.";
+
+/* 验证码已发送到您的手机，请输入: */
+"sms_tip" = "Enter the Received SMS code:";
+
+/*请输入*/
+"please_enter" = "Type here";
+
+/* 验证码已发送到您的手机 */
+"sms_send_success" = "SMS password has been sent to your cell phone. ";
+
+/* 用户未通过主认证,请重新登录 */
+"sms_send_erro1" = "Failed to pass primary authentication. Please sign in again.";
+
+/* 重新发送短信校验码出错 */
+"sms_send_erro2" = "Error resending SMS password";
+
+/* 用户尝试爆破登录 */
+"sms_send_erro3" = "You are trying brute-force login. The user account is locked.";
+
+/* IP地址尝试爆破登录 */
+"sms_send_erro4" = "You are trying brute-force login on this IP address. The IP address is blocked.";
+
+/* 短信验证码为6位数字组成,请确认是否输入有误 */
+"sms_valid_error" = "Please enter the word you see in the picture.";
+
+/*认证失败*/
+"auth_failure" = "Authentication failed";
+
+/* 对不起，应用试用期已过！ */
+"end_of_trial_period" = "Free trial of the application has expired.";
+
+/* "管理员启用了密码安全策略,您需要修改密码才能正常登录,请点击确定修改!" */
+"modify_pwd_policy" = "Password must be changed. Please change the password now.";
+
+/* 点击跳转到浏览器 */
+"switch_to_safari" = "Confirm";
+
+/* 需要验证用户信息 */
+"please_input_userinfo" = "Enter username and password";
+
+/* 暂不支持此类认证 */
+"authtype_not_support" = "Such authentication method is not supported.";
+
+/* 获取挑战信息失败 */
+"get_radius_info_fail" = "Failed to get challenging information.";
+
+/* 正在建立加密网络 */
+"create_safety_network" = "Creating VPN tunnel...";
+
+/* VPN会话已过期,请重新登录 */
+"invalid_session" = "Session timed out. Please sign in again.";
+
+/* 正在检测网络环境 */
+"verify_network" = "Verifying network environment...";
+
+/* 重新登录 */
+"relogin" = "Re-Login";
+
+/* 正在连接VPN */
+"connecting" = "Connecting...";
+
+/* 滑动图案解锁 */
+"slide_to_unlock" = "Slide to Unlock";
+
+/* 审批过的数据库中已存在 */
+"approved_in_database" = "It has been approved.";
+
+/* 硬件特征码已经达到最大上限,请与管理员联系 */
+"reach_max_hardid_limit" = "Number of approved hardware IDs has reached the maximum. Please contact the network administrator.";
+
+/* 绘制解锁图案 */
+"unlock_pattern" = "Unlock Pattern";
+
+/* 请输入手势密码 */
+"gesturelock_please_verify" = "Please verify pattern password.";
+
+/* 设置手势密码 */
+"set_pattern_password" = "Set Pattern Password";
+
+/* 请绘制手势密码 */
+"gesturelock_please_draw" = "Please draw the pattern.";
+
+/* 忘记手势密码 */
+"forget_pattern_password" = "Forgot Password";
+
+/* 注销/切换账号 */
+"logout_or_change_account" = "Log out/Switch Account";
+
+/* 与上一次绘制不一致,请重新绘制 */
+"different_pattern" = "It must be the same with the pattern you drawn just now.";
+
+/* 重设 */
+"reset" = "Reset";
+
+/* 忘记手势密码,需重新登录 */
+"forget_pattern_and_relogin" = "If pattern password is forgotten, re-login is required.";
+
+/* 至少连接四个点,请重新输入 */
+"four_points_needed" = "At least 4 dots must be connected.";
+
+/* 再次绘制解锁图案 */
+"reset_pattern" = "Confirm Password";
+
+/* 加载中 */
+"loading" = "Loading...";
+
+/* 密码错误,还可以再输入%d次 */
+"password_error_tip" = "Password is incorrect. You have %d more chances.";
+
+/* 手势密码已失效 */
+"pattern_invalid" = "Pattern password is invalid. ";
+
+/* 请重新登录,登录后可重新设置手势密码 */
+"relogin_and_reset_pattern" = "Sign in again to set pattern password.";
+
+/* 以单点登录形式登录 */
+"sso_login_btn" = "Sign in in recording mode";
+
+/* 单点登录 */
+"SSORecord" = "SSO Record";
+
+/* 输入校验码 */
+"SSORecord_fillin_sec_code" = "Enter code";
+
+/* 正在提交校验码... */
+"submitting_randcode" = "Submitting verification code...";
+
+/* 确认 */
+"sso_confirm" = "OK";
+
+/* 验证码需要４个数字,请重新输入 */
+"randcode_too_short" = "Verification code should contain 4 digits. Please enter a valid one.";
+
+/* 连接服务器失败 */
+"network_error" = "Unable to connect to server.";
+
+/* 与服务端通信失败，无法连接服务器 */
+"cannot_connect_to_server" = "Unable to connect to server.";
+
+/* 校验码错误 */
+"randcode_error" = "Verification Code Error";
+
+/* app没开启录制 */
+"app_not_in_sso_mode" = "Unable to connect to server. Please start recording.";
+
+/* 录制超时需要控制台重新开启 */
+"record_timeout" = "Recording timed out. Please restart recording in GUI.";
+
+/* 未知错误 */
+"unknown_error" = "Unknown Error";
+
+/* 无法连接服务器 */
+"sso_network_error" = "Unable to connect to server.";
+
+/* 验证失败 */
+"randcode_error_type" = "Verification Failure";
+
+/* 与服务端通信失败 */
+"network_lost_type" = "Unable to connect to server.";
+
+/* 单点登录配置初始化失败，无法开启录制模式 */
+"sso_init_fail" = "Failed to start recording mode because SSO configuration cannot be initialized. ";
+
+/* 是否重试 */
+"retry_or_not" = "Would you like to try again?";
+
+/* 重试 */
+"retry" = "Try Again";
+
+/* 单点登录录制 */
+"sso_record_title" = "SSO Credential Recording";
+
+/* 因管理策略限制，操作被禁止 */
+"filecrypt_img_tips" = "This operation is not allowed according to some policy. ";
+
+/* 与服务端通信失败，是否重试? */
+"network_lost_and_retry" = "Failed to connect to server. Would you like to try again?";
+
+/* 管理员已禁用非安全应用分享给安全应用 */
+"block_unsafe_share_in" = "Administrator has disabled sharing from insecure app to secure app";
+
+/* 未经过授权认证,不能登录 */
+"emm_authored_none" = "You have not had authorization status verified and cannot log in. ";
+
+/* 授权认证遇到错误,不能登录 */
+"emm_authored_error" = "Error verifying authorization status and cannot log in. ";
+
+/* 错误的授权等级,不能登录 */
+"emm_authored_rank_error" = "Authorization level is invalid and you cannot log in. ";
+
+/* 授权被冻结,不能登录 */
+"emm_authored_freize_error" = "Your authorization is locked and you cannot sign in. ";
+
+/* 授权请求失败,不能登录 */
+"emm_authored_req_error" = "Failed to request authorization and you cannot sign in. ";
+
+//------------------------------- password modify ---------------------------//
+/* 修改失败 */
+"pwd_modify_failed" = "Failed to save changes. ";
+
+/* 修改成功 */
+"pwd_modify_success" = "Save changes successfully. ";
+
+/* 用户在线超时 */
+"pwd_modify_user_timeout" = "Session timed out.";
+
+/* 您的账号没有通过短信认证,不能修改手机号码 */
+"pwd_modify_nopass_smsauth" = "You have not passed SMS authentication and cannot modify mobile phone number.";
+
+/* 获取用户信息失败 */
+"pwd_modify_get_user_info_failed" = "Failed to obtain user information";
+
+/* 密码输入错误,请重新输入 */
+"pwd_modify_err_password" = "The current password is invalid. Please enter again.";
+
+/* 您从未在线登录过，不能进行离线登录 */
+"pwd_never_login" = "You have never logged in with online mode and therefore cannot log in with offline mode.";
+
+/* 更新用户信息失败,可能服务器忙 */
+"pwd_modify_update_user_info_failed" = "Failed to modify user information, likely because server is busy.";
+
+/* 您的账号没有通过密码认证,不能修改密码 */
+"pwd_modify_nopass_pwdauth" = "You have not passed local password based authentication and cannot modify password.";
+
+/* 密码长度过短 */
+"pwd_modify_too_short_pwd" = "Password is too short.";
+
+/* 密码不能包含用户名 */
+"pwd_modify_contain_username" = "Password must not contain username.";
+
+/* 密码必须包含数字 */
+"pwd_modify_must_contain_num" = "Password must contain digit.";
+
+/* 密码必须包含字母 */
+"pwd_modify_must_contain_abc" = "Password must contain letter.";
+
+/* 密码必须包含特殊字符 */
+"pwd_modify_must_contain_special" = "Password must contain special character.";
+
+/* 新密码不能与旧密码完全相同 */
+"pwd_modify_same_as_old_pwd" = "New password must be different from the current password.";
+
+/* 对不起,您不具有更改密码的权限,请与管理员联系 */
+"pwd_modify_no_pwd_privilege" = "You do not have permission to modify password. Please contact the admin.";
+
+/* 对不起,您不具有更改用户描述的权限,请与管理员联系 */
+"pwd_modify_no_info_privilege" = "You do not have permission to modify user description. Please contact the admin.";
+
+/* 对不起,按照当前的密码策略,您的密码不符合以下密码策略 */
+"pwd_policy_err"="The password does not comply with the following password security options: ";
+
+/* 密码策略 */
+"pwd_policy" = "Password Requirement: ";
+
+"min_length" = "Minimum length is ";
+
+/* 密码已过期 */
+"pwd_expired" = "Password has expired.";
+
+/* 用户必须修改初始密码 */
+"pwd_must_modify" = "Initial password must be changed upon first login.";
+
+/* 两次输入密码不一致 */
+"pwd_diff" = "The new passwords entered should be the same. ";
+
+"old_password" = "Required";
+
+"new_password" = "Required";
+
+"confrim_new_passwod" = "Required";
+
+"confrim_modify" = "Change";
+
+"wait_for_modify" = "Please wait";
+
+"password_length_illegal" = "Password is too short.";
+
+/* 使用此应用，需要先安装awork */
+"awork_non_install" = "Use of this application requires that Secure Browser be installed.";
+
+/* 此应用未在aWork应用商店发布，禁止使用 */
+"app_cannot_use" = "This application has not been published in aWork AppStore and is not available currently. ";
+
+/* 该应用非当前应用商店下载，安全校验不通过，禁止使用！请在当前应用商店重新下载使用 */
+"app_security_check_failed" = "The app is not from the current application store. Security check did not pass. Using is terminated and you need to re-download in the current application store.";
+
+/* 当前应用不可用，描述文件缺失必要的信息，请联系管理员更新描述文件！ */
+"no_proper_groupid_found" = "Current app is not available. Configuration profile is corrupted. Please contact administrator to update the profile.";
+
+/* ----------------------------------网络可视化提示---------------------------------- */
+"network_visualization_disconnect" = "Connection is dropped. Please try reconnecting.";
+
+"network_visualization_reconnect" = "Reconnect";
+
+"network_visualization_connecting" = "Reconnecting, please wait...";
+
+"network_visualization_back_home" = "Back to Secure Container";
+
+"network_visualization_no_network" = "Network is unreachable. Please check network settings.";
+
+"network_visualization_setting_floatball" = "Floating Ball";
+
+"network_visualization_open_floatball" = "Enable float ball";
+
+"network_visualization_btnTitle_reconnect" = "Reconnect";
+
+"network_visualization_btnTitle_flow" = "Traffic";
+
+"network_visualization_btnTitle_backhome" = "Back";
+
+/* ----------------------------------截屏审计---------------------------------- */
+"screen_shot_for_toast" = "Screen capture is forbidden. Your action is logged.";
+
+/* ----------------------------------截屏阻断---------------------------------- */
+"screen_shot_for_lock_remind" = "Illegitimate screenshot action was detected and has been logged and reported. Please delete the screenshot right now to avoid legal responsibility.";
+"screen_shot_for_lock_delete" = "Delete Now";
+
+"screen_shot_for_lock_delete_failed" = "The app has enabled screenshot capture logging and will become unavailable temporarily if you take screenshot for another %@ times.";
+
+//------------------免密认证------------------
+//验证指纹
+"verify_the_fingerprint" = "Verify Fingerprint";
+
+//验证Face ID
+"verify_the_faceID" = "Verify Face";
+
+//解锁指纹
+"fingerprint_unLocked" = "Fingerprint Unlock";
+
+//指纹解锁页面详细信息
+"fingerprint_description" = "Tap to sign in with fingerprint";
+
+//Face ID解锁
+"faceID_unLocked" = "Face Unlock";
+
+//face id解锁页面详细信息
+"faceID_description" = "Tap to sign in with face";
+
+//混合锁指纹验证提示框
+"hybridVC_fingerprint_alert_recordGesture" = "Please verify the existing fingerprint or draw the pattern.";
+
+//混合锁Face ID验证提示框
+"hybridVC_faceID_alert_recordGesture" = "Please verify the existing face or draw the pattern.";
+
+//混合锁指纹验证提示框
+"hybridVC_fingerprint_alert_verifyGesture" = "Please verify the existing fingerprint or draw the pattern.";
+
+//混合锁Face ID验证提示框
+"hybridVC_faceID_alert_verifyGesture" = "Please verify the existing face or draw the pattern.";
+
+//强制指纹验证提示框
+"fingerprintVC_fingerprint_alert" = "Please verify the the existing fingerprint";
+
+//强制脸部解锁提示框
+"fingerprintVC_faceID_alert" = "Please verify the existing face";
+
+//指纹被锁定提示信息
+"fingerprintVC_TouchIDLock_alert" = "Please enter your iPhone password";
+
+//未设置TouchID提示信息
+"no_setup_TouchID_alert" = "You have not set up your TouchID. Please add a fingerprint in Settings > Touch ID & Password";
+
+//未设置FaceID提示信息
+"no_setup_FaceID_alert" = "You have not set up your TouchID. Please add a face ID in Settings > Face ID & Password";
+
+//未设置iPhone密码提示信息
+"no_setup_iPhone_password_alert" = "You have not set up your pattern password. Please add one in Settings > Touch ID & Password";
+
+//不支持TouchID提示信息
+"unsupported_alert" = "The device does not support TouchID. Please use pattern lock. ";
+
+//不支持FaceID提示信息
+"unsupported_faceid_alert" = "The device does not support FaceID. Please use pattern lock";
+
+//注销登陆
+"logout" = "Sign Out";
+
+//录制手势密码
+"Record_gesture_password" = "Draw the pattern";
+
+//跳过
+"jump_over" = "Skip";
+
+//注销/切换账号
+"Logout_or_switch_account" = "Sign Out / Switch Account";
+
+//切换到指纹验证
+"switch_fingerprint" = "Use Fingerprint";
+
+//切换到人脸识别
+"switch_faceID" = "Use Face";
+
+//face认证操作太频繁
+"faceID_frequent_authent" ="Operation is too Frequent. Please try again later. ";
+
+/*--------------------------GestureLock---------------------*/
+/* 密码错误 */
+"password_error_tip" = "Password is incorrect. You have %d more chances. ";
+
+/* 手势密码输入错误次数过多，账户已被锁定，你可以点击忘记手势密码重新设定或10分钟后再试 */
+"GestureLock_error_too_much" = "Account is locked because number of login attempts with incorrect pattern passwords has reached the maximum. You may find password or try logging in %d minutes later. ";
+
+/* 手势密码已失效 */
+"pattern_invalid" = "Pattern password is invalid.";
+
+/* 请重新登录,登录后可重新设置手势密码 */
+"relogin_and_reset_pattern" = "Sign in again to set pattern password.";
+
+/* 绘制解锁图案 */
+"unlock_pattern" = "Unlock Pattern";
+
+/* 设置手势密码 */
+"set_pattern_password" = "Set Pattern Password";
+
+/* 请绘制手势密码 */
+"gesturelock_please_draw" = "Please draw the pattern. ";
+
+/* 请输入手势密码 */
+"gesturelock_please_verify" = "Please verify pattern password.";
+
+/* 请输入原手势密码 */
+"gesturelock_please_verify_original" = "Please verify original pattern password";
+
+/* 忘记手势密码 */
+"forget_pattern_password" = "Forgot Password";
+
+/* 注销/切换账号 */
+"logout_or_change_account" = "Sign Out/Switch Account";
+
+/* 与上一次绘制不一致,请重新绘制 */
+"different_pattern" = "It must be the same with the pattern you drawn just now.";
+
+/* 重设 */
+"reset" = "Reset";
+
+/* 更多 */
+"more" = "More";
+
+/* 忘记手势密码,需重新登录 */
+"forget_pattern_and_relogin" = "If pattern password is forgotten, re-login is required.";
+
+/* 至少连接四个点,请重新输入 */
+"four_points_needed" = "At least 4 dots must be connected.";
+
+/* 再次绘制解锁图案 */
+"reset_pattern" = "Confirm Password";
+
+/* 滑动图案解锁 */
+"slide_to_unlock" = "Slide to Unlock";
+
+/* 重新登录 */
+"relogin" = "Re-Login";
+
+"update_app_tip" = "Update";
+
+"security_update_now" = "%@ New version available. Please update the app.";
+
+"i_got_it" = "Got it";
+
+"not_updated" = "Not Update";
+
+"go_update" = "Update Now";
+
+"try_again_later" = "You have tried too many times. Please try again %ld minutes later.";
+
+"goto_awork_logout" = "Go to %@ and log in again.";
+
+"gesture_fail_max_alert" = "Verification with pattern password failed too many times. Please log in with account or try again in %d minutes.";
+
+"touchID_fail_max_alert" = "Verification with touch ID failed too may times. Please log in with account.";
+
+"faceID_fail_max_alert" = "Verification with face ID failed too many times. Please log in with account.";
+
+"admin_open_gesture" = "The administrator has enabled pattern lock. Please set a pattern password.";
+
+"emm_verify_gesture" = "Use Pattern Password";
+
+"emm_verify_touchID" = "Use Touch ID";
+
+"emm_verify_faceID" = "Use Face ID";
+
+/* ----------------------------------过期更新---------------------------------- */
+"sapp_will_expired_update" = "%@'s certificate will expire in %d day(s). Please update the application now.";
+
+"awork_update_title" = "New Version Available";
+
+"goto_detail" = "Please go to aWork to view details ASAP.";
+
+"goto_read" = "View";
+
+"cert_expire_message" = "The application's certificate will expire in %d day(s). Please contact the admin ASAP.";
+
+"no_longer_alert" = "Do not show this again";
+
+"sapp_expired_title" = "About to Expire";

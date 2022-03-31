@@ -1,0 +1,595 @@
+/*
+ Localizable.strings
+ AppDirect
+ 
+ Created by sangfor on 15/1/20.
+ Copyright (c) 2015年 sangfor. All rights reserved.
+ */
+"auth_acount" = "账号";
+
+/* 证书 */
+"auth_certificate" = "证书";
+
+/* 用户名 */
+"auth_username" = "用户名";
+
+/* 请输入用户名 */
+"auth_username_placeholder" = "请输入用户名";
+
+/* 密码 */
+"auth_password" = "密码";
+
+/* 请输入密码 */
+"auth_password_placeholder" = "请输入密码";
+
+/* 选择证书 */
+"select_cert" = "选择登录凭证";
+
+/* 证书密码 */
+"cert_pass" = "请输入证书密码";
+
+/* 完成 */
+"complete" = "完成";
+
+/* 返回 */
+"return" = "返回";
+
+/* 提示 */
+"tip" = "提示";
+
+/* 取消 */
+"cancel" = "取消";
+
+/* 退出 */
+"exit" = "退出";
+
+/* 确定 */
+"confirm" = "确定";
+
+/* 登录 */
+"login_btn" = "登录";
+
+/* 记住密码 */
+"remember_passwd_checkbox" = "记住密码";
+
+/* 自动登录 */
+"auto_login_checkbox" = "自动登录";
+
+/* 正在登录... */
+"auth_waiting" = "正在登录...";
+
+/* 正在连接VPN提示 */
+"vpn_connecting" = "正在连接VPN...";
+
+/* 重连 */
+"reconnect" = "重连";
+
+/* 短信认证 */
+"sms_cert_auth" = "短信认证";
+
+/* 挑战认证 */
+"radius_auth" = "挑战认证";
+
+/* 令牌认证 */
+"token_auth" = "令牌认证";
+
+/* 如何导入证书? */
+"how_to_import_cert" = "如何导入证书?";
+
+/* 请选择证书后登录 */
+"please_select_cert" = "请选择证书后登录";
+
+/* 证书文件不存在 */
+"cert_not_found" = "证书文件不存在";
+
+/* 从iTunes导入证书 */
+"cert_help_title" = "从iTunes导入证书";
+
+/* 错误提示 */
+"error_tip" = "错误提示";
+
+/* 请输入用户名,否则无法登录 */
+"need_username" = "请输入用户名,否则无法登录";
+
+/*网络不可用提示*/
+"network_connect_failed" = "当前网络不可用，请检查网络";
+
+/*地址访问出错*/
+"addr_access_failed" = "地址无法访问，请检查地址是否正确";
+
+/*网络超时*/
+"network_request_timeout" = "网络连接超时，请检查网络是否正常";
+
+/*连接被远程服务器拒绝*/
+"network_connect_refuse" = "无法连接服务器，请检查网络，或联系管理员检查VPN地址是否正确";
+
+/*输入地址不正确*/
+"addr_input_false" = "地址有误，请输入正确的地址";
+
+/*未知错误*/
+"addr_unknown_error" = "未知错误，请检查地址是否正确";
+
+/*地址栏不为空*/
+"addr_input_null" = "地址输入不许为空";
+
+/*vpn不可达*/
+"vpn_connect_failed" = "连接失败，请检查服务器是否正常";
+
+/* 公有用户不支持此类组合认证 */
+"configure_error" = "公有用户不支持此类组合认证";
+
+/* 重新获取验证码 */
+"re_get_sms_code" = "重新获取验证码";
+
+/* 重新获取 */
+"reget_rnd_img" = "重新获取";
+
+/* 请输入动态口令: */
+"token_tip" = "请输入动态密码";
+
+/* 图形验证码 */
+"randcode_title" = "图形验证码";
+
+/* 验证码不能为空*/
+"need_randcode" = "验证码不能为空";
+
+/* 请输入图中的字符后点击完成 */
+"rnd_page_title" = "请输入图中的字符后点击确定";
+
+/* 暂不支持硬件特征码认证 */
+"hardid_not_support" = "暂不支持硬件特征码认证";
+
+/* 您的短信码仍在有效期内 */
+"sms_still_valid" = "您的验证码仍在有效期内";
+
+/* 验证码已发送到您的手机，请输入: */
+"sms_tip" = "验证码已发送到您的手机";
+
+/* 验证码已发送到您的手机 */
+"sms_send_success" = "验证码已发送到您的手机";
+
+/*请输入*/
+"please_enter" = "请输入";
+
+/* 用户未通过主认证,请重新登录 */
+"sms_send_erro1" = "用户未通过主认证,请重新登录";
+
+/* 重新发送短信校验码出错 */
+"sms_send_erro2" = "重新发送验证码出错";
+
+/* 用户尝试爆破登录 */
+"sms_send_erro3" = "用户尝试爆破登录,已被系统锁定";
+
+/* IP地址尝试爆破登录 */
+"sms_send_erro4" = "IP地址尝试爆破登录,已被系统锁定";
+
+/* 验证码不能为空 */
+"sms_valid_error" = "验证码不能为空";
+
+/*认证失败*/
+"auth_failure" = "认证失败";
+
+/* 对不起，应用试用期已过！ */
+"end_of_trial_period" = "对不起，应用试用期已过！";
+
+/* "管理员启用了密码安全策略,您需要修改密码才能正常登录,请点击确定修改!" */
+"modify_pwd_policy" = "管理员启用了密码安全策略,您需要修改密码才能正常登录,请点击确定修改!";
+
+/* 点击跳转到浏览器 */
+"switch_to_safari" = "确定";
+
+/* 需要验证用户信息 */
+"please_input_userinfo" = "需要验证用户信息";
+
+/* 暂不支持此类认证 */
+"authtype_not_support" = "暂不支持此类认证";
+
+/* 获取挑战信息失败 */
+"get_radius_info_fail" = "获取挑战信息失败";
+
+/* 正在建立加密网络 */
+"create_safety_network" = "正在建立加密网络...";
+
+/* VPN会话已过期,请重新登录 */
+"invalid_session" = "VPN会话已过期,请重新登录";
+
+/* 正在检测网络环境 */
+"verify_network" = "正在检测网络环境...";
+
+/* 重新登录 */
+"relogin" = "重新登录";
+
+/* 正在连接VPN */
+"connecting" = "正在连接VPN...";
+
+/* 审批过的数据库中已存在 */
+"approved_in_database" = "审批过的数据库中已存在";
+
+/* 硬件特征码已经达到最大上限,请与管理员联系 */
+"reach_max_hardid_limit" = "硬件特征码已经达到最大上限,请与管理员联系";
+
+/* 重设 */
+"reset" = "重设";
+
+/* 加载中 */
+"loading" = " 加载中 ";
+
+/* 以录制模式登录 */
+"sso_login_btn" = "以录制模式登录";
+
+/* 单点登录 */
+"SSORecord" = "单点登录";
+
+/* 请输入校验码 */
+"SSORecord_fillin_sec_code" = "请输入校验码";
+
+/* 正在提交校验码... */
+"submitting_randcode" = "正在提交校验码...";
+
+/* 确认 */
+"sso_confirm" = "确认";
+
+/* 验证码需要４个数字,请重新输入 */
+"randcode_too_short" = "验证码需要４个数字,请重新输入";
+
+/* 连接服务器失败 */
+"network_error" = "连接服务器失败";
+
+/* 与服务端通信失败，无法连接服务器 */
+"cannot_connect_to_server" = "与服务端通信失败，无法连接服务器";
+
+/* 校验码错误 */
+"randcode_error" = "校验码错误";
+
+/* app没开启录制 */
+"app_not_in_sso_mode" = "app没开启录制";
+
+/* 录制超时需要控制台重新开启 */
+"record_timeout" = "录制超时需要控制台重新开启";
+
+/* 未知错误 */
+"unknown_error" = "未知错误";
+
+/* 无法连接服务器 */
+"sso_network_error" = "无法连接服务器";
+
+/* 验证失败 */
+"randcode_error_type" = "验证失败";
+
+/* 与服务端通信失败 */
+"network_lost_type" = "与服务端通信失败";
+
+/* 单点登录配置初始化失败，无法开启录制模式 */
+"sso_init_fail" = "单点登录配置初始化失败，无法开启录制模式";
+
+/* 是否重试 */
+"retry_or_not" = "是否重试";
+
+/* 重试 */
+"retry" = "重试";
+
+/* 单点登录录制 */
+"sso_record_title" = "单点登录录制";
+
+/* 因管理策略限制，操作被禁止 */
+"filecrypt_img_tips" = "因管理策略限制，操作被禁止";
+
+/* 与服务端通信失败，是否重试? */
+"network_lost_and_retry" = "与服务端通信失败，是否重试?";
+
+/* 管理员已禁用非安全应用分享给安全应用 */
+"block_unsafe_share_in" = "管理员已禁用非安全应用分享给安全应用";
+
+/* 未经过授权认证,不能登录 */
+"emm_authored_none" = "未经过授权认证,不能登录";
+
+/* 授权认证遇到错误,不能登录 */
+"emm_authored_error" = "授权认证遇到错误,不能登录";
+
+/* 错误的授权等级,不能登录 */
+"emm_authored_rank_error" = "错误的授权等级,不能登录";
+
+/* 授权被冻结,不能登录 */
+"emm_authored_freize_error" = "授权被冻结,不能登录";
+
+/* 授权请求失败,不能登录*/
+"emm_authored_req_error" = "授权请求失败,不能登录";
+
+//------------------------------- password modify ---------------------------//
+/* 修改失败 */
+"pwd_modify_failed" = "修改失败";
+
+/* 修改成功 */
+"pwd_modify_success" = "修改成功";
+
+/* 用户在线超时 */
+"pwd_modify_user_timeout" = "用户在线超时";
+
+/* 您的账号没有通过短信认证,不能修改手机号码 */
+"pwd_modify_nopass_smsauth" = "您的账号没有通过短信认证,不能修改手机号码";
+
+/* 获取用户信息失败 */
+"pwd_modify_get_user_info_failed" = "获取用户信息失败";
+
+/* 密码输入错误,请重新输入 */
+"pwd_modify_err_password" = "密码输入错误,请重新输入";
+
+/* 您从未在线登录过，不能进行离线登录 */
+"pwd_never_login" = "您从未在线登录过，不能进行离线登录";
+
+/* 更新用户信息失败,可能服务器忙 */
+"pwd_modify_update_user_info_failed" = "更新用户信息失败,可能服务器忙";
+
+/* 您的账号没有通过密码认证,不能修改密码 */
+"pwd_modify_nopass_pwdauth" = "您的账号没有通过密码认证,不能修改密码";
+
+/* 密码长度过短 */
+"pwd_modify_too_short_pwd" = "密码长度过短";
+
+/* 密码不能包含用户名 */
+"pwd_modify_contain_username" = "密码不能包含用户名";
+
+/* 密码必须包含数字 */
+"pwd_modify_must_contain_num" = "密码必须包含数字";
+
+/* 密码必须包含字母 */
+"pwd_modify_must_contain_abc" = "密码必须包含字母";
+
+/* 密码必须包含特殊字符 */
+"pwd_modify_must_contain_special" = "密码必须包含特殊字符";
+
+/* 新密码不能与旧密码完全相同 */
+"pwd_modify_same_as_old_pwd" = "新密码不能与旧密码完全相同";
+
+/* 对不起,您不具有更改密码的权限,请与管理员联系 */
+"pwd_modify_no_pwd_privilege" = "对不起,您不具有更改密码的权限,请与管理员联系";
+
+/* 对不起,您不具有更改用户描述的权限,请与管理员联系 */
+"pwd_modify_no_info_privilege" = "对不起,您不具有更改用户描述的权限,请与管理员联系";
+
+/* 对不起,按照当前的密码策略,您的密码不符合以下密码策略 */
+"pwd_policy_err"="对不起,按照当前的密码策略,您的密码不符合以下密码策略:";
+
+/* 密码策略 */
+"pwd_policy" = "密码策略：";
+
+"min_length" = "最小长度是";
+
+/* 密码已过期 */
+"pwd_expired" = "密码已过期";
+
+/* 用户必须修改初始密码 */
+"pwd_must_modify" = "用户必须修改初始密码";
+
+/* 两次输入密码不一致 */
+"pwd_diff" = "两次输入密码不一致";
+
+"old_password" = "旧密码";
+
+"new_password" = "新密码";
+
+"confrim_new_passwod" = "确定新密码";
+
+"confrim_modify" = "修改";
+
+"wait_for_modify" = "请稍候";
+
+"password_length_illegal" = "密码长度太短";
+
+/* 使用此应用，需要先安装awork */
+"awork_non_install" = "使用此应用，需要先安装aWork";
+
+/* 此应用未在aWork应用商店发布，禁止使用 */
+"app_cannot_use" = "此应用未在aWork应用商店发布，禁止使用";
+
+/* 该应用非当前应用商店下载，安全校验不通过，禁止使用！请在当前应用商店重新下载使用 */
+"app_security_check_failed" = "该应用非当前应用商店下载，安全校验不通过，禁止使用！请在当前应用商店重新下载使用";
+
+/* 当前应用不可用，描述文件缺失必要的信息，请联系管理员更新描述文件！ */
+"no_proper_groupid_found" = "当前应用不可用，描述文件缺失必要的信息，请联系管理员更新描述文件！";
+
+/* ----------------------------------网络可视化提示---------------------------------- */
+"network_visualization_disconnect" = "连接已断开，请尝试重新连接！";
+
+"network_visualization_reconnect" = "重新连接";
+
+"network_visualization_connecting" = "正在重新连接，请稍等...";
+
+"network_visualization_back_home" = "返回工作区";
+
+"network_visualization_no_network" = "网络不可用，请检查网络设置";
+
+"network_visualization_setting_floatball" = "悬浮球";
+
+"network_visualization_open_floatball" = "启用悬浮球";
+
+"network_visualization_btnTitle_reconnect" = "重连";
+
+"network_visualization_btnTitle_flow" = "流量";
+
+"network_visualization_btnTitle_backhome" = "返回";
+
+/* ----------------------------------截屏审计---------------------------------- */
+"screen_shot_for_toast" = "管理员已开启截屏防护，您的截屏行为已上传! ";
+
+/* ----------------------------------截屏阻断---------------------------------- */
+"screen_shot_for_lock_remind" = "该应用已开启截屏限制，您的行为已被记录，请立即删除截屏图片。";
+"screen_shot_for_lock_delete" = "去删除";
+"screen_shot_for_lock_delete_failed" = "该应用已开启截屏行为记录，再次截屏%ld次后您将短时间内无法使用该应用";
+
+/* ----------------------------------本地认证---------------------------------- */
+//------------------免密认证------------------
+//验证指纹
+"verify_the_fingerprint" = "验证指纹";
+
+//验证Face ID
+"verify_the_faceID" = "验证面容 ID";
+
+//解锁指纹
+"fingerprint_unLocked" = "指纹解锁";
+
+//指纹解锁页面详细信息
+"fingerprint_description" = "点击进行指纹登录";
+
+//Face ID解锁
+"faceID_unLocked" = "面容 ID解锁";
+
+//face id解锁页面详细信息
+"faceID_description" = "点击进行面容 ID登录";
+
+//混合锁指纹验证提示框
+"hybridVC_fingerprint_alert_recordGesture" = "请验证已有指纹或录制手势";
+
+//混合锁Face ID验证提示框
+"hybridVC_faceID_alert_recordGesture" = "请验证已有面容 ID或录制手势";
+
+//混合锁指纹验证提示框
+"hybridVC_fingerprint_alert_verifyGesture" = "请验证已有指纹或验证手势";
+
+//混合锁Face ID验证提示框
+"hybridVC_faceID_alert_verifyGesture" = "请验证已有面容 ID或验证手势";
+
+//强制指纹验证提示框
+"fingerprintVC_fingerprint_alert" = "请验证已有指纹";
+
+//强制脸部解锁提示框
+"fingerprintVC_faceID_alert" = "请验证已有面容 ID";
+
+//指纹被锁定提示信息
+"fingerprintVC_TouchIDLock_alert" = "请输入iPhone密码";
+
+//未设置TouchID提示信息
+"no_setup_TouchID_alert" = "您尚未设置TouchID，请在手机系统“设置>Touch ID与密码”中添加指纹";
+
+//未设置FaceID提示信息
+"no_setup_FaceID_alert" = "您尚未设置面容 ID，请在手机系统“设置>面容 ID与密码”中录入面容";
+
+//未设置iPhone密码提示信息
+"no_setup_iPhone_password_alert" = "您尚未设置手机密码，请在手机系统“设置>Touch ID与密码”中添加密码";
+
+//不支持TouchID提示信息
+"unsupported_alert" = "设备不支持TouchID，使用手势锁";
+
+//不支持FaceID提示信息
+"unsupported_faceid_alert" = "设备不支持FaceID，使用手势锁";
+
+//注销登陆
+"logout" = "注销登录";
+
+//录制手势密码
+"Record_gesture_password" = "录制手势密码";
+
+//跳过
+"jump_over" = "跳过";
+
+//注销/切换账号
+"Logout_or_switch_account" = "注销/切换账号";
+
+//切换到指纹验证
+"switch_fingerprint" = "切换到指纹验证";
+
+//切换到人脸识别
+"switch_faceID" = "切换到面容验证";
+
+//要求至少开启一种解锁方式
+"faceID_frequent_authent" = "操作频繁，请稍后重试";
+
+/*--------------------------GestureLock---------------------*/
+/* 密码错误,还可以再输入%d次 */
+"password_error_tip" = "密码错误,还可以再输入%d次";
+
+/* 手势密码输入错误次数过多，账户已被锁定，你可以点击忘记手势密码重新设定或10分钟后再试 */
+"GestureLock_error_too_much" = "手势密码输入错误次数过多，账户已被锁定，你可以点击忘记手势密码重新设定或%d分钟后再试";
+
+/* 手势密码已失效 */
+"pattern_invalid" = "手势密码已失效";
+
+/* 请重新登录,登录后可重新设置手势密码 */
+"relogin_and_reset_pattern" = "请重新登录,登录后可重新设置手势密码。";
+
+/* 绘制解锁图案 */
+"unlock_pattern" = "验证手势密码";
+
+/* 设置手势密码 */
+"set_pattern_password" = "设置手势密码";
+
+/* 请绘制手势密码 */
+"gesturelock_please_draw" = "请绘制手势密码";
+
+/* 请输入手势密码 */
+"gesturelock_please_verify" = "请输入手势密码";
+
+/* 请输入原手势密码 */
+"gesturelock_please_verify_original" = "请输入原手势密码";
+
+/* 忘记手势密码 */
+"forget_pattern_password" = "忘记手势密码";
+
+/* 注销/切换账号 */
+"logout_or_change_account" = "注销/切换账号";
+
+/* 与上一次绘制不一致,请重新绘制 */
+"different_pattern" = "与上一次绘制不一致,请重新绘制";
+
+/* 重设 */
+"reset" = "重设";
+
+/* 更多 */
+"more" = "更多";
+
+/* 忘记手势密码,需重新登录 */
+"forget_pattern_and_relogin" = "忘记手势密码,需重新登录。";
+
+/* 至少连接四个点,请重新输入 */
+"four_points_needed" = "至少连接四个点,请重新输入";
+
+/* 再次绘制解锁图案 */
+"reset_pattern" = "再次绘制以确认";
+
+/* 滑动图案解锁 */
+"slide_to_unlock" = "滑动图案解锁";
+
+"update_app_tip" = "更新应用";
+
+"security_update_now" = "%@ 应用版本有更新，请及时更新应用。";
+
+"i_got_it" = "我知道了";
+
+"not_updated" = "暂不更新";
+
+"go_update" = "前往更新";
+
+"try_again_later" = "多次输入错误，请%ld分钟后再试";
+
+"goto_awork_logout" = "前往“%@”重新登录";
+
+"gesture_fail_max_alert" = "手势密码短时间内失败多次，请登录验证或%d分钟后再试";
+
+"touchID_fail_max_alert" = "指纹ID短时间内失败多次，需要进行登录验证";
+
+"faceID_fail_max_alert" = "面容ID短时间内失败多次，需要进行登录验证";
+
+"admin_open_gesture" = "管理员已开启手势解锁验证，请设置手势锁";
+
+"emm_verify_gesture" = "验证手势锁";
+
+"emm_verify_touchID" = "验证指纹ID";
+
+"emm_verify_faceID" = "验证面容ID";
+
+/* ----------------------------------过期更新---------------------------------- */
+"sapp_will_expired_update" = "%@应用企业签名证书剩余%d天过期，请立即更新应用";
+
+"awork_update_title" = "aWork发现新版本";
+
+"goto_detail" = "请及时前往aWork查看详情";
+
+"goto_read" = "前往查看";
+
+"cert_expire_message" = "该应用的企业签名证书剩余%d天过期,请及时联系管理员处理";
+
+"no_longer_alert" = "不再提醒";
+
+"sapp_expired_title" = "证书即将过期";
+
+

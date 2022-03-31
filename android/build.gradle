@@ -1,0 +1,54 @@
+group 'com.firesera.sangfor_plugin'
+version '1.0'
+
+buildscript {
+    repositories {
+        maven { url "https://maven.aliyun.com/repository/google"}
+        maven { url "https://maven.aliyun.com/repository/jcenter"}
+        maven { url 'https://developer.huawei.com/repo/' }
+        maven { url "https://jitpack.io" }
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public"}
+        maven { url "http://download.flutter.io" }
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.0.2'
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        maven { url "https://maven.aliyun.com/repository/google"}
+        maven { url "https://maven.aliyun.com/repository/jcenter"}
+        maven { url 'https://developer.huawei.com/repo/' }
+        maven { url "https://jitpack.io" }
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public"}
+        maven { url "http://download.flutter.io" }
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 30
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        minSdkVersion 19
+    }
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', includes: ['*.jar'])
+    implementation(name: 'SangforSDK', ext: 'aar')
+}

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<language>
+    <zh_CN>
+        <errors>
+            <error code="1000" note="成功" />
+            <error code="1001" note="操作失败，可能服务器太忙" />
+            <error code="1002" note="非允许时间段，禁止登录" />
+            <error code="1003" note="未启用此认证，访问被拒绝" />
+            <error code="1004" note="前一认证与当前认证非同一用户" />
+            <error code="1005" note="不支持此种认证组合方式" />
+            <error code="1006" note="系统已到达最大授权用户限制" />
+            <error code="1007" note="您所在用户组已达到最大在线用户限制" />
+            <error code="1008" note="用户尝试暴破登录，已被系统锁定" />
+            <error code="1009" note="ip地址尝试暴破登录，已被系统锁定" />
+            <error code="1010" note="ip地址尝试暴破登录，启用图形校验码" />
+            <error code="1011" note="session连接超时" />
+            <error code="1101" note="用户名或者密码错误" />
+            <error code="1102" note="用户已过期" />
+            <error code="1103" note="用户被禁用" />
+            <error code="1104" note="用户已超时或注销" />
+            <error code="1105" note="校验码错误或校验码已过期" />
+            <error code="1106" note="用户名或密码错误，启用图形校验码" />
+            <error code="1107" note="LDAP连接服务器失败" />
+            <error code="1201" note="证书不合法" />
+            <error code="1202" note="证书认证被禁用" />
+            <error code="1203" note="证书已经被撤消" />
+            <error code="1204" note="证书编码设置有误，请联系管理员" />
+            <error code="1205" note="证书签名无效" />
+            <error code="1206" note="证书还未生效" />
+            <error code="1207" note="证书已经过期" />
+            <error code="1208" note="证书读取失败，请检查证书文件权限" />
+            <error code="1301" note="免密认证无效的手机ID" />
+            <error code="1302" note="免密认证无效的code" />
+            <error code="1303" note="免密认证功能未开启" />
+            <error code="1304" note="免密认证失败" />
+            <error code="1401" note="发送短信失败" />
+            <error code="1402" note="短信验证码错误" />
+            <error code="1403" note="用户未设置手机号码，无法进行短信认证" />
+            <error code="1404" note="提交的手机号码错误，无法进行短信认证" />
+            <error code="1405" note="短信验证码已过期" />
+            <error code="1501" note="EMM授权不通过，请联系管理员更新授权" />
+            <error code="1502" note="EMM授权达到最大数" />
+            <error code="1503" note="EMM授权被冻结" />
+            <error code="1504" note="EMM授权认证失败" />
+            <error code="1505" note="EMM授权认证失败，连接服务器错误" />
+            <error code="1506" note="EMM授权认证失败，加密密钥错误" />
+            <error code="1601" note="硬件特征码验证失败" />
+            <error code="1602" note="未审批的硬件特征码数据库中已存在，请等待管理员审批" />
+            <error code="1603" note="用户超时或硬件特征码无效输入" />
+            <error code="1604" note="硬件特征数达到最大值" />
+            <error code="1605" note="更新硬件特征码失败" />
+            <error code="1606" note="账号绑定的设备数超过限制，请联系管理员" />
+            <error code="1607" note="硬件特征码达到授权限制" />
+            <error code="1608" note="目前终端未通过认证，等待管理员审批" />
+            <error code="1609" note="提交硬件特征码失败" />
+            <error code="1610" note="用户未设置手机号码，无法进行短信认证" />
+            <error code="1701" note="没有对应的外部认证服务器，认证失败" />
+            <error code="1702" note="动态令牌密码错误，认证失败" />
+            <error code="1703" note="挑战认证失败" />
+            <error code="1704" note="radius挑战超时" />
+            <error code="2001" note="连接VPN服务器错误，请检查网络" />
+            <error code="2002" note="VPN的URL为空" />
+            <error code="2003" note="域名解析失败" />
+            <error code="2004" note="越狱手机禁止登陆" />
+            <error code="2005" note="VPN选路失败" />
+            <error code="2006" note="网络不可用" />
+            <error code="2007" note="vpn地址格式有误" />
+            <error code="2008" note="连接服务器超时" />
+            <error code="2101" note="认证参数为空" />
+            <error code="2102" note="调用的方法与当前认证方式不一致" />
+            <error code="2103" note="证书不存在" />
+            <error code="2104" note="证书类型获取失败" />
+            <error code="2105" note="认证参数为空" />
+            <error code="2106" note="免密认证不可用" />
+            <error code="2107" note="构建请求失败" />
+            <error code="2108" note="session无效" />
+            <error code="2109" note="登录VPN状态错误，注销后再进行登录" />
+            <error code="2110" note="读取硬件特征码失败" />
+            <error code="2111" note="VPN初始化失败" />
+            <error code="2112" note="认证参数错误" />
+            <error code="2113" note="证书密码错误" />
+            <error code="2114" note="认证失败" />
+            <error code="2201" note="启动L3VPN失败" />
+            <error code="3001" note="用户在线超时" />
+            <error code="3002" note="您的帐号没有通过短信认证，不能修改手机号码" />
+            <error code="3003" note="获取用户信息失败" />
+            <error code="3004" note="密码输入错误，请重新输入" />
+            <error code="3005" note="更新用户信息失败，可能服务器忙!" />
+            <error code="3006" note="您的帐号没有通过密码认证，不能修改密码" />
+            <error code="3007" note="VPN未登录导致修改密码失败" />
+            <error code="3008" note="新密码与原密码相同" />
+            <error code="3009" note="不符合密码策略" />
+            <error code="3010" note="修改密码失败" />
+            <error code="3013" note="对不起，您不具有更改密码的权限，请与管理员联系" />
+            <error code="3014" note="对不起,您不具有更改用户描述的权限，请与管理员联系" />
+            <error code="3015" note="密码的长度最长不能超过48个字符" />
+            <error code="3016" note="网络连接超时，请尝试重试登录" />
+            <error code="3017" note="服务器地址为IPv4地址，而当前网络环境为IPv6环境，请切换网络环境后重试" />
+            <error code="3018" note="服务器地址为IPv6地址，而当前网络环境为IPv4环境，请切换网络环境后重试" />
+            <error code="3101" note="转发线程启动失败" />
+            <error code="3201" note="内存不足" />
+            <error code="4001" note="其它错误" />
+        </errors>
+    </zh_CN>
+    <en_US>
+        <errors>
+            <error code="1000" note="Success" />
+            <error code="1001" note="Operation failed, possible because server is busy." />
+            <error code="1002" note="Login is not allowed due to unauthorized time period." />
+            <error code="1003" note="This authentication is not enabled. Access denied." />
+            <error code="1004" note="Current authentication user is different from previous one." />
+            <error code="1005" note="This multi-factor authentication is not supported." />
+            <error code="1006" note="System has reached the maximum of authorized users." />
+            <error code="1007"
+                note="Number of concurrent users of parent group has reached the maximum." />
+            <error code="1008"
+                note="You are trying brute-force login. The user account is locked." />
+            <error code="1009" note="You are trying brute-force login. The IP address is locked." />
+            <error code="1010"
+                note="Brute-force login attempt detected! Word verification is activated." />
+            <error code="1011" note="Session timed out." />
+            <error code="1101" note="Username or password is incorrect." />
+            <error code="1102" note="User has expired." />
+            <error code="1103" note="User has been disabled." />
+            <error code="1104" note="User has timed out or logged off." />
+            <error code="1105" note="Word verification code is incorrect or has expired." />
+            <error code="1106"
+                note="Username or password is incorrect. Word verification is enabled." />
+            <error code="1107" note="Failed to connect to LDAP servers." />
+            <error code="1201" note="The certificate is invalid." />
+            <error code="1202" note="Certificate-based authentication is disabled." />
+            <error code="1203" note="The certificate has been revocated." />
+            <error code="1204"
+                note="Certificate encoding is invalid. Please contact administrator." />
+            <error code="1205" note="Certificate signature is invalid." />
+            <error code="1206" note="Certificate is not valid yet." />
+            <error code="1207" note="Certificate has expired." />
+            <error code="1208" note="证书读取失败，请检查证书文件权限" />
+            <error code="1301"
+                note="Password free authentication is not available on this mobile ID." />
+            <error code="1302" note="Password free authentication is not available on this code." />
+            <error code="1303" note="Password free authentication is not enabled." />
+            <error code="1304" note="Password free authentication failed." />
+            <error code="1401" note="Failed to send SMS message." />
+            <error code="1402" note="SMS passcode error." />
+            <error code="1403"
+                note="SMS authentication cannot be performed, for no mobile phone number has been specified for the user." />
+            <error code="1404"
+                note="SMS authentication cannot be performed, for the mobile number is invalid." />
+            <error code="1405" note="SMS passcode has expired." />
+            <error code="1501"
+                note="EMM authorization request failed. Please contact administrator." />
+            <error code="1502" note="Number of EMM authorization has reached the maximum." />
+            <error code="1503" note="EMM authorization is locked." />
+            <error code="1504" note="EMM authentication failed." />
+            <error code="1505" note="EMM authentication failed. Unable to connect to a server." />
+            <error code="1506" note="EMM authentication failed. Encrypted key is invalid." />
+            <error code="1601" note="Failed to verify hardware ID." />
+            <error code="1602"
+                note="It already exists in the unapproved hardware ID database and is waiting for approval." />
+            <error code="1603" note="User timed out or hardware ID is invalid." />
+            <error code="1604" note="Number of hardware ID has reached the maximum." />
+            <error code="1605" note="Failed to update hardware ID." />
+            <error code="1606" note="Binded devices has exceeded the maximum. Please contact administrator." />
+            <error code="1607" note="Hardware ID has reached the maximum of authorization." />
+            <error code="1608"
+                note="Endpoint has not been authenticated, waiting for admin to approve it." />
+            <error code="1609" note="Failed to submit hardware ID." />
+            <error code="1610"
+                note="SMS authentication cannot be performed, for no mobile phone number has been specified for the user." />
+            <error code="1701"
+                note="Authentication failed, for no corresponding external authentication server exist." />
+            <error code="1702" note="Authentication failed, for OTP error." />
+            <error code="1703" note="Challenge authentication failed." />
+            <error code="1704" note="RADIUS challenge timeout." />
+            <error code="2001" note="VPN connection error. Please check network." />
+            <error code="2002" note="URL in VPN is required." />
+            <error code="2003" note="Failed to parse domain." />
+            <error code="2004" note="Jailbroken phone is not allowed to login." />
+            <error code="2005" note="Failed to select VPN line." />
+            <error code="2006" note="Network is not available." />
+            <error code="2007" note="VPN address is invalid." />
+            <error code="2008" note="Connecting to server timeout." />
+            <error code="2101" note="Authentication parameter is required." />
+            <error code="2102"
+                note="Called method is not the same as the current authentication method." />
+            <error code="2103" note="The certificate does not exist." />
+            <error code="2104" note="Failed to get certificate type." />
+            <error code="2105" note="Authentication parameter is required." />
+            <error code="2106" note="Password free authentication is not available." />
+            <error code="2107" note="Failed to build request." />
+            <error code="2108" note="Session is invalid." />
+            <error code="2109" note="VPN status error. Please re-login after logging off." />
+            <error code="2110" note="Failed to read hardware ID." />
+            <error code="2111" note="Failed to initialize VPN." />
+            <error code="2112" note="Authentication parameter error." />
+            <error code="2113" note="Certificate password error." />
+            <error code="2114" note="Authentication failed." />
+            <error code="2201" note="Failed to initialize L3VPN." />
+            <error code="3001" note="Session timed out." />
+            <error code="3002"
+                note="You have not passed SMS authentication and cannot change mobile phone number." />
+            <error code="3003" note="Failed to obtain user information." />
+            <error code="3004" note="Password is incorrect. Please re-enter." />
+            <error code="3005"
+                note="Failed to update user information, possibly because the server is busy." />
+            <error code="3006"
+                note="You have summited an incorrect password and cannot change password." />
+            <error code="3007" note="Failed to change password because VPN is not logged in." />
+            <error code="3008" note="New password must be different from previous password." />
+            <error code="3009" note="The password does not meet the requirements." />
+            <error code="3010" note="Failed to change password." />
+            <error code="3013"
+                note="You do not have permission to change password. Please contact administrator." />
+            <error code="3014"
+                note="You do not have permission to change user description. Please contact the administrator." />
+            <error code="3015" note="Password cannot exceed 48 characters." />
+            <error code="3016"
+                note="Failed to submit device information. Please contact administrator." />
+            <error code="3017" note="服务器地址为IPv4地址，而当前网络环境为IPv6环境，请切换网络环境后重试" />
+            <error code="3018" note="服务器地址为IPv6地址，而当前网络环境为IPv4环境，请切换网络环境后重试" />
+            <error code="3101" note="Failed to enable forward thread." />
+            <error code="3201" note="Insufficient memory" />
+            <error code="4001" note="Other error" />
+        </errors>
+    </en_US>
+</language>
