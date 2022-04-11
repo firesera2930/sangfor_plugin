@@ -15,13 +15,13 @@ class SangforPlugin {
   /// [SangForModel]
   /// 
   /// VPN服务器url地址信息
-  /// String? address;
+  /// [String]? address;
   /// 
   /// 用户名信息
-  /// String? userName;
+  /// [String]? userName;
   /// 
   /// 密码信息
-  /// String? userPassword;
+  /// [String]? userPassword;
   static Future<void> startPasswordAuth(SangForModel sangForModel) async {
     await _methodChannel.invokeMethod('startPasswordAuth',sangForModel.toJson());
   }
