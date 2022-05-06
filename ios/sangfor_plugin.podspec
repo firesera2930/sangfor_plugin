@@ -16,8 +16,9 @@ A new flutter plugin project.
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
-  s.platform = :ios, '9.0'
+  s.platform = :ios, '9.0' 
 
+  s.ios.vendored_frameworks = 'Framework/SangforSDK.framework'
   s.vendored_frameworks = 'SangforSDK.framework'
 
   # Flutter.framework does not contain a i386 slice.
