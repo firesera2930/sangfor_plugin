@@ -53,7 +53,7 @@ public class SangforPlugin implements FlutterPlugin, MethodCallHandler,SFAuthRes
         result.success("Android " + android.os.Build.VERSION.RELEASE);
         break;
       case "startPasswordAuth":
-        startPasswordAuth((Map) call.arguments);
+        startPasswordAuth((Map) call.arguments, result);
         break;
       case "cancelAuth":
         cancelAuth((Map) call.arguments);
@@ -83,7 +83,7 @@ public class SangforPlugin implements FlutterPlugin, MethodCallHandler,SFAuthRes
    *
    * @param apiKeyMap
    */
-  private void startPasswordAuth(Map apiKeyMap) {
+  private void startPasswordAuth(Map apiKeyMap,Result result) {
     if (null != apiKeyMap) {
       if (apiKeyMap.containsKey("address") && !TextUtils.isEmpty((String) apiKeyMap.get("address"))) {
         mVpnAddress = (String) apiKeyMap.get("address");
@@ -100,6 +100,8 @@ public class SangforPlugin implements FlutterPlugin, MethodCallHandler,SFAuthRes
       SFMobileSecuritySDK.getInstance().setAuthResultListener(this);
 
       System.out.println("登录...");
+
+      result('登录中');
     }
   }
 

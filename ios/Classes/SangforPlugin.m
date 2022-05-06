@@ -43,6 +43,7 @@ static NSString *flutterResult = @"";
     NSString *password = call.arguments[@"userPassword"];
     
     [[SFMobileSecuritySDK sharedInstance] startPasswordAuth:vpnUrl userName:username password:password];
+    result(@"登录中");
 }
 
 

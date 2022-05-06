@@ -27,14 +27,14 @@ class SangforPlugin {
   }
 
   /// 注销VPN
-  static Future<String?> logout() async {
-    final String? resultStr = await _methodChannel.invokeMethod('logout');
+  static Future<String> logout() async {
+    final String resultStr = await _methodChannel.invokeMethod('logout') ?? '';
     return resultStr;
   }
 
   /// 登录状态
-  static Future<String?> authResult() async {
-    final String? resultStr = await _methodChannel.invokeMethod('authResult') ?? '失败';
+  static Future<String> authResult() async {
+    final String resultStr = await _methodChannel.invokeMethod('authResult') ?? '失败';
     return resultStr;
   }
 }
