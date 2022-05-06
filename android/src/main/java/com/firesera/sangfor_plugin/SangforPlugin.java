@@ -33,6 +33,7 @@ public class SangforPlugin implements FlutterPlugin, MethodCallHandler,SFAuthRes
   private String mUserPassword = null;        //密码信息
 
   private SFBaseMessage sfBaseMessage = null;
+  private String message = null;
 
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
@@ -64,7 +65,7 @@ public class SangforPlugin implements FlutterPlugin, MethodCallHandler,SFAuthRes
         flutter((Map) call.arguments);
         break;
       case "authResult":
-        result.success(sfBaseMessage.mErrStr);
+        result.success(this.message);
         break;
       default:
         result.notImplemented();
@@ -138,12 +139,14 @@ public class SangforPlugin implements FlutterPlugin, MethodCallHandler,SFAuthRes
   @Override
   public void onAuthSuccess(SFBaseMessage sfBaseMessage) {
     this.sfBaseMessage = sfBaseMessage;
-    System.out.println("登录成功!");
+    this.message = "成功";
+    System.out.println("登录成功");
   }
 
   @Override
   public void onAuthFailed(SFAuthType sfAuthType, SFBaseMessage sfBaseMessage) {
     this.sfBaseMessage = sfBaseMessage;
+    this.message = "失败";
     System.out.println("登录失败!");
   }
 
