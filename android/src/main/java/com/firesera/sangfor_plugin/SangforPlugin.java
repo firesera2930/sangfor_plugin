@@ -101,7 +101,7 @@ public class SangforPlugin implements FlutterPlugin, MethodCallHandler,SFAuthRes
 
       System.out.println("登录...");
 
-      result("登录中");
+      result.success("登录中");
     }
   }
 
