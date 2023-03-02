@@ -22,9 +22,9 @@ class _MyAppState extends State<MyApp> {
   String _code = '0';
 
   SangForModel sangForModel = SangForModel(
-    address: 'https://192.168.18.1:443',
-    userName: 'test',
-    userPassword: '12345678'
+    address: 'https://183.222.57.218:4455',
+    userName: 'admin',
+    userPassword: 'Krd@20220107'
   );
 
   @override

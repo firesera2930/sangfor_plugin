@@ -7,8 +7,8 @@ buildscript {
         maven { url "https://maven.aliyun.com/repository/jcenter"}
         maven { url 'https://developer.huawei.com/repo/' }
         maven { url "https://jitpack.io" }
-        maven { url "http://maven.aliyun.com/nexus/content/groups/public"}
-        maven { url "http://download.flutter.io" }
+        maven { url "https://maven.aliyun.com/nexus/content/groups/public"}
+        maven { url "https://download.flutter.io" }
     }
 
     dependencies {
@@ -22,8 +22,8 @@ rootProject.allprojects {
         maven { url "https://maven.aliyun.com/repository/jcenter"}
         maven { url 'https://developer.huawei.com/repo/' }
         maven { url "https://jitpack.io" }
-        maven { url "http://maven.aliyun.com/nexus/content/groups/public"}
-        maven { url "http://download.flutter.io" }
+        maven { url "https://maven.aliyun.com/nexus/content/groups/public"}
+        maven { url "https://download.flutter.io" }
     }
 }
 
