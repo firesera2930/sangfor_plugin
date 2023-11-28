@@ -1,8 +1,22 @@
 part of sangfor_plugin;
 
-/// sangfor数据结构
-class SangForModel{
+enum SFAuthStatus {
+  authStatusNone(0),
+  authStatusLogining(1),
+  authStatusPrimaryAuthOK(2),
+  authStatusAuthOk(3),
+  authStatusLogouting(4),
+  authStatusLogouted(5);
 
+  final int intValue;
+
+  const SFAuthStatus(this.intValue);
+
+  static SFAuthStatus valueOf(int value) => values.firstWhere((element) => element.intValue == value);
+}
+
+/// sangfor数据结构
+class SangForModel {
   /// VPN服务器url地址信息
   String? address;
 

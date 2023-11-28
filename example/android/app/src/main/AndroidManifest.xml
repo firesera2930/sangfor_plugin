@@ -11,7 +11,7 @@
     <!--用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
-    <application
+    <application tools:replace="android:label"
         android:label="sangfor_plugin_example"
         android:name=".SangForApplication"
         android:icon="@mipmap/ic_launcher">

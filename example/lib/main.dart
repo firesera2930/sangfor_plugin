@@ -3,10 +3,25 @@ import 'dart:io';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter/services.dart';
 import 'package:sangfor_plugin/sangfor_plugin.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChannels.lifecycle.setMessageHandler((msg) async {
+    debugPrint('SystemChannels> $msg');
+    if (msg == 'AppLifecycleState.inactive') {
+      SangforPlugin.cancelListen();
+    } else if (msg == 'AppLifecycleState.resumed') {
+      SangforPlugin.startListen((value) => null);
+    }
+    // msg是个字符串，是下面的值
+    // AppLifecycleState.resumed
+    // AppLifecycleState.inactive
+    // AppLifecycleState.paused
+    // AppLifecycleState.detached
+    return msg;
+  });
   runApp(const MyApp());
 }
 
@@ -18,44 +33,57 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   String _code = '0';
 
-  SangForModel sangForModel = SangForModel(
-    address: 'https://183.222.57.218:4455',
-    userName: 'admin',
-    userPassword: 'Krd@20220107'
-  );
+  SangForModel sangForModel = SangForModel(address: 'https://111.75.176.154:4455', userName: 'consumer', userPassword: 'Nfjk@2022');
 
+  // SangForModel sangForModel = SangForModel(address: 'https://183.222.57.218:4455', userName: 'admin', userPassword: 'Krd@20220107');
+  String _receivedData = '';
   @override
   void initState() {
+    _onReceiveEventData();
     super.initState();
   }
 
   @override
-  void dispose(){
+  void dispose() {
     logout();
+    SangforPlugin.cancelListen();
     super.dispose();
   }
 
   void login() async {
+    debugPrint('address:${sangForModel.address}');
+    debugPrint('userName:${sangForModel.userName}');
+    debugPrint('Password:${sangForModel.userPassword}');
     await SangforPlugin.startPasswordAuth(sangForModel);
   }
 
-
   void logout() async {
-    await SangforPlugin.logout();
+    // SangforPlugin.cancelCounting();
+    SangforPlugin.logout();
   }
 
   void authResult() async {
-    String?  string = await SangforPlugin.authResult();
-    debugPrint(string);
+    SFAuthStatus? sfAuthStatus = await SangforPlugin.authResult();
+    debugPrint(sfAuthStatus.toString());
   }
 
- 
+  /// 监听 eventChannel 数据流
+  void _onReceiveEventData() {
+    SangforPlugin.startListen(
+      (data) {
+        print(data);
+        setState(() {
+          _receivedData = data.toString();
+        });
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
+    print('-------------------------------------------------');
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -73,6 +101,7 @@ class _MyAppState extends State<MyApp> {
             //     setState(() {});
             //   },
             // ),
+            Text('状态：$_receivedData'),
             const SizedBox(
               height: 20,
             ),
@@ -102,17 +131,16 @@ class _MyAppState extends State<MyApp> {
 
   /// 登录按键
   Widget loginButton() {
-    return  Container(
+    return Container(
       height: 54,
       width: double.infinity,
       child: TextButton(
         style: TextButton.styleFrom(
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(8))),
+          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
           onSurface: Colors.white,
           backgroundColor: Colors.blue,
         ),
-        child: const Text('登录',style: TextStyle(color: Colors.white, fontSize: 16)),
+        child: const Text('登录', style: TextStyle(color: Colors.white, fontSize: 16)),
         onPressed: () {
           login();
         },
@@ -120,19 +148,18 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-   /// 注销按键
+  /// 注销按键
   Widget logoutButton() {
-    return  Container(
+    return Container(
       height: 54,
       width: double.infinity,
       child: TextButton(
         style: TextButton.styleFrom(
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(8))),
+          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
           onSurface: Colors.white,
           backgroundColor: Colors.blue,
         ),
-        child: const Text('注销',style: TextStyle(color: Colors.white, fontSize: 16)),
+        child: const Text('注销', style: TextStyle(color: Colors.white, fontSize: 16)),
         onPressed: () {
           logout();
         },
@@ -140,19 +167,18 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-   /// 接口
+  /// 接口
   Widget apiButton() {
-    return  Container(
+    return Container(
       height: 54,
       width: double.infinity,
       child: TextButton(
         style: TextButton.styleFrom(
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(8))),
+          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
           onSurface: Colors.white,
           backgroundColor: Colors.blue,
         ),
-        child: const Text('接口',style: TextStyle(color: Colors.white, fontSize: 16)),
+        child: const Text('接口', style: TextStyle(color: Colors.white, fontSize: 16)),
         onPressed: () {
           requestPublishInfo();
         },
@@ -160,19 +186,18 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-   /// 状态
+  /// 状态
   Widget authButton() {
-    return  Container(
+    return Container(
       height: 54,
       width: double.infinity,
       child: TextButton(
         style: TextButton.styleFrom(
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(8))),
+          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
           onSurface: Colors.white,
           backgroundColor: Colors.blue,
         ),
-        child: const Text('登录状态',style: TextStyle(color: Colors.white, fontSize: 16)),
+        child: const Text('登录状态', style: TextStyle(color: Colors.white, fontSize: 16)),
         onPressed: () {
           authResult();
         },
@@ -181,41 +206,32 @@ class _MyAppState extends State<MyApp> {
   }
 
   /// 获取版本管理信息
-  void requestPublishInfo() async {    
-    getBaiduNews(
-      onSucc: (publish) { 
-        _code = publish;
-        debugPrint('🛰️ 远程构建版本号' + publish);
-        setState(() { });
-      }, 
-      onFail: (msg) { 
-        // 若更新接口获取失败，容错方案为也可以直接进入APP
-        debugPrint(' ❌ 版本信息文件获取失败,直接进入APP ');
-      });
+  void requestPublishInfo() async {
+    getBaiduNews(onSucc: (publish) {
+      _code = publish;
+      debugPrint('🛰️ 远程构建版本号' + publish);
+      setState(() {});
+    }, onFail: (msg) {
+      // 若更新接口获取失败，容错方案为也可以直接进入APP
+      debugPrint(' ❌ 版本信息文件获取失败,直接进入APP ');
+    });
   }
 
   // 获取百热点信息
-  static void getBaiduNews({required void Function(String str) onSucc, required void Function(String msg) onFail}) async { 
-
+  static void getBaiduNews({required void Function(String str) onSucc, required void Function(String msg) onFail}) async {
     /// 数据解析
-    String ip             = '172.16.31.5';   
-    
-    String path =  'http://' + ip + ':11010';
+    String ip = '192.167.2.105';
+
+    String path = 'http://' + ip + ':8888';
     // 发起请求
     final dio = initDio();
 
     try {
-      Response response = await dio.get(
-        path,
-        options: Options(
-          headers: {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36'},
-          contentType: 'text/html;charset=utf-8'
-        ),
-      );
-      if(response.statusCode == 200){
+      Response response = await dio.put(path + '/ams/login/appPwdLogin', data: {"password": "e10adc3949ba59abbe56e057f20f883e", "phone": "15659776180"});
+      if (response.statusCode == 200) {
         var resp = response.data;
         return onSucc(resp.toString());
-      }else{
+      } else {
         return onFail('获取新闻失败!');
       }
     } catch (e) {
@@ -223,11 +239,10 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
-   /// 创建 DIO 对象
-  static Dio initDio([bool? shortTimeOut, int? time]) { 
-
+  /// 创建 DIO 对象
+  static Dio initDio([bool? shortTimeOut, int? time]) {
     var timeOutValue = time ?? 15000;
-    if(shortTimeOut == true) timeOutValue = 5000;
+    if (shortTimeOut == true) timeOutValue = 5000;
     var options = BaseOptions(
       connectTimeout: timeOutValue,
       receiveTimeout: timeOutValue,
@@ -238,11 +253,9 @@ class _MyAppState extends State<MyApp> {
     var dio = Dio(options);
     var adapter = dio.httpClientAdapter as DefaultHttpClientAdapter;
     adapter.onHttpClientCreate = (HttpClient client) {
-        client.findProxy = (_) => 'DIRECT';
-        client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+      client.findProxy = (_) => 'DIRECT';
+      client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
     };
     return dio;
-
   }
 }
-

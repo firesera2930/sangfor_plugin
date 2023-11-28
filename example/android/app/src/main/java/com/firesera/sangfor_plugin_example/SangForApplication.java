@@ -19,7 +19,6 @@ public class SangForApplication extends FlutterApplication {
         int sdkFlags = SFSDKFlags.FLAGS_HOST_APPLICATION;       //表明是单应用(或者是主应用)
         sdkFlags |=SFSDKFlags.FLAGS_VPN_MODE_TCP;               //表明使用VPN功能中的TCP模式
         SFMobileSecuritySDK.getInstance().initSDK(base, sdkMode, sdkFlags, null);
-
         mSDKMode = sdkMode;
     }
 
