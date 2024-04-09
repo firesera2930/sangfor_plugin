@@ -137,7 +137,7 @@ class _MyAppState extends State<MyApp> {
       child: TextButton(
         style: TextButton.styleFrom(
           shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
-          onSurface: Colors.white,
+          disabledForegroundColor: Colors.white.withOpacity(0.38),
           backgroundColor: Colors.blue,
         ),
         child: const Text('登录', style: TextStyle(color: Colors.white, fontSize: 16)),
@@ -156,7 +156,7 @@ class _MyAppState extends State<MyApp> {
       child: TextButton(
         style: TextButton.styleFrom(
           shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
-          onSurface: Colors.white,
+          disabledForegroundColor: Colors.white.withOpacity(0.38),
           backgroundColor: Colors.blue,
         ),
         child: const Text('注销', style: TextStyle(color: Colors.white, fontSize: 16)),
@@ -169,13 +169,13 @@ class _MyAppState extends State<MyApp> {
 
   /// 接口
   Widget apiButton() {
-    return Container(
+    return SizedBox(
       height: 54,
       width: double.infinity,
       child: TextButton(
         style: TextButton.styleFrom(
           shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
-          onSurface: Colors.white,
+          disabledForegroundColor: Colors.white.withOpacity(0.38),
           backgroundColor: Colors.blue,
         ),
         child: const Text('接口', style: TextStyle(color: Colors.white, fontSize: 16)),
@@ -188,13 +188,13 @@ class _MyAppState extends State<MyApp> {
 
   /// 状态
   Widget authButton() {
-    return Container(
+    return SizedBox(
       height: 54,
       width: double.infinity,
       child: TextButton(
         style: TextButton.styleFrom(
           shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
-          onSurface: Colors.white,
+          disabledForegroundColor: Colors.white.withOpacity(0.38),
           backgroundColor: Colors.blue,
         ),
         child: const Text('登录状态', style: TextStyle(color: Colors.white, fontSize: 16)),

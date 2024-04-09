@@ -14,8 +14,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/sangfor_plugin/ios"
 
 SPEC CHECKSUMS:
-  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
-  sangfor_plugin: 2daec8f822e360d2ef5c345f28f2d250f48023b1
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  sangfor_plugin: dd7681f4d28fa0c3671d87bbc0ec5c3da3c4338f
 
 PODFILE CHECKSUM: 663715e941f9adb426e33bf9376914006f9ea95b
 

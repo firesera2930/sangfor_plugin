@@ -12,14 +12,13 @@ A new flutter plugin project.
   s.homepage         = 'http://example.com'
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'Your Company' => 'email@example.com' }
-  s.source           = { :path => 'Framework/SangforSDK.framework' }
+  s.source           = { :path => '.' }
+  s.ios.vendored_frameworks = 'Framework/SangforSDK.framework'
+  s.vendored_frameworks = 'SangforSDK.framework'
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
-  s.platform = :ios, '9.0' 
-
-  s.ios.vendored_frameworks = 'Framework/SangforSDK.framework'
-  s.vendored_frameworks = 'SangforSDK.framework'
+  s.platform = :ios, '9.0'
 
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
