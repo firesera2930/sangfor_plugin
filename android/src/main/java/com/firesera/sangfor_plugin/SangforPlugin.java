@@ -13,6 +13,7 @@ import com.sangfor.sdk.base.SFAuthType;
 import com.sangfor.sdk.base.SFBaseMessage;
 import com.sangfor.sdk.base.SFLogoutListener;
 import com.sangfor.sdk.base.SFLogoutType;
+import com.sangfor.sdk.utils.SFLogN;
 
 import java.util.Map;
 
@@ -46,6 +47,7 @@ public class SangforPlugin implements FlutterPlugin, MethodCallHandler, EventCha
     private SFBaseMessage sfBaseMessage = null;
     ///vpn状态
     private int sfAuthStatusCode = 0;
+    private static final String TAG = "SangforPlugin";
 
     @Override
     public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
@@ -155,20 +157,20 @@ public class SangforPlugin implements FlutterPlugin, MethodCallHandler, EventCha
     @Override
     public void onAuthSuccess(SFBaseMessage sfBaseMessage) {
         this.sfBaseMessage = sfBaseMessage;
-        eventSink.success(sfAuthStatusCode);
+        SFLogN.info(TAG, "认证成功！");
     }
 
     @Override
     public void onAuthFailed(SFBaseMessage sfBaseMessage) {
         this.sfBaseMessage = sfBaseMessage;
-        System.out.println(sfAuthStatusCode);
+        SFLogN.info(TAG, "认证失败！");
     }
 
 
     @Override
     public void onAuthProgress(SFAuthType sfAuthType, SFBaseMessage sfBaseMessage) {
         this.sfBaseMessage = sfBaseMessage;
-        System.out.println("onAuthProgress" + "登录中。。。");
+        SFLogN.info(TAG, "登录中...");
     }
 
     @Override
