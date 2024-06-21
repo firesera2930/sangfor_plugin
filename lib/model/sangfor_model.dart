@@ -12,7 +12,7 @@ enum SFAuthStatus {
 
   const SFAuthStatus(this.intValue);
 
-  static SFAuthStatus valueOf(int value) => values.firstWhere((element) => element.intValue == value);
+  static SFAuthStatus valueOf(dynamic value) => values.firstWhere((element) => value is int ? element.intValue == value : element.intValue == int.parse(value));
 }
 
 /// sangfor数据结构

@@ -21,7 +21,7 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 /// 32位打包
-project.setProperty('target-platform', 'android-arm')
+//project.setProperty('target-platform', 'android-arm')
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
@@ -46,15 +46,15 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.firesera.sangfor_plugin_example"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
 
         multiDexEnabled true
-        ndk {
-            abiFilters 'armeabi-v7a'
-        }
+//        ndk {
+//            abiFilters 'armeabi-v7a'
+//        }
     }
 
     signingConfigs {
@@ -79,9 +79,9 @@ android {
             shrinkResources true //删除无用资源
             //minifyEnabled false
             //proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            ndk {
-                abiFilters 'armeabi-v7a'
-            }
+//            ndk {
+//                abiFilters 'armeabi-v7a'
+//            }
         }
         // debug {
         //     signingConfig signingConfigs.release

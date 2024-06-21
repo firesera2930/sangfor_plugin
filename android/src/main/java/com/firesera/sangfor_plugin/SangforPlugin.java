@@ -13,7 +13,6 @@ import com.sangfor.sdk.base.SFAuthType;
 import com.sangfor.sdk.base.SFBaseMessage;
 import com.sangfor.sdk.base.SFLogoutListener;
 import com.sangfor.sdk.base.SFLogoutType;
-import com.sangfor.sdk.base.SFTunnelStatusListener;
 
 import java.util.Map;
 
@@ -63,9 +62,9 @@ public class SangforPlugin implements FlutterPlugin, MethodCallHandler, EventCha
     public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
         String callMethod = call.method;
         switch (callMethod) {
-            case "getPlatformVersion":
-                result.success("Android " + android.os.Build.VERSION.RELEASE);
-                break;
+//            case "getPlatformVersion":
+//                result.success("Android " + android.os.Build.VERSION.RELEASE);
+//                break;
             case "startPasswordAuth":
                 startPasswordAuth((Map) call.arguments, result);
                 break;
@@ -156,14 +155,15 @@ public class SangforPlugin implements FlutterPlugin, MethodCallHandler, EventCha
     @Override
     public void onAuthSuccess(SFBaseMessage sfBaseMessage) {
         this.sfBaseMessage = sfBaseMessage;
-        eventSink.success("成功");
+        eventSink.success(sfAuthStatusCode);
     }
 
     @Override
-    public void onAuthFailed(SFAuthType sfAuthType, SFBaseMessage sfBaseMessage) {
+    public void onAuthFailed(SFBaseMessage sfBaseMessage) {
         this.sfBaseMessage = sfBaseMessage;
-        System.out.println("登录失败!");
+        System.out.println(sfAuthStatusCode);
     }
+
 
     @Override
     public void onAuthProgress(SFAuthType sfAuthType, SFBaseMessage sfBaseMessage) {
