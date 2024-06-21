@@ -14,7 +14,7 @@ static int statusCode = 0;
 - (instancetype)init {
     self = [super init];
     if (self) {
-        [[SFMobileSecuritySDK sharedInstance] initSDK:SFSDKModeSupportVpn flags:SFSDKFlagsHostApplication|SFSDKFlagsVpnModeTcp extra:nil];
+        [[SFMobileSecuritySDK sharedInstance] initSDK:SFSDKModeSupportMutable flags:SFSDKFlagsHostApplication|SFSDKFlagsVpnModeTcp extra:nil];
         [[SFMobileSecuritySDK sharedInstance] setAuthResultDelegate:self];
     }
     return self;

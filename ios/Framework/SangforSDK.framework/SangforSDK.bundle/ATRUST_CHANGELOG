@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ChangeLogs>
+	<ChangeLog Version="2.3.6.1" SubVersion="" Date="2023-07-07">
+		<ChangeList>aTrust支持交互式远程日志获取功能</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.3.4.2" SubVersion="" Date="2023-06-07">
+		<ChangeList>SPA支持一次一码</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.3.4.1" SubVersion="" Date="2023-05-19">
+		<ChangeList>支持虚拟ip下发</ChangeList>
+		<ChangeList>优化日志打印</ChangeList>
+		<ChangeList>解决相关网上问题</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.3.2.1" SubVersion="" Date="2023-04-28">
+		<ChangeList>aTrust APP支持RN奔溃捕获</ChangeList>
+		<ChangeList>aTrust APP支持H5扫码功能</ChangeList>
+		<ChangeList>aTrust APP支持推荐应用</ChangeList>
+		<ChangeList>优化UDP SPA的稳定性</ChangeList>
+		<ChangeList>优化本地数据库</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.16.1" SubVersion="" Date="2023-03-31">
+		<ChangeList>aTrust APP支持文件外发审批</ChangeList>
+		<ChangeList>推送服务优化</ChangeList>
+		<ChangeList>历史问题修复</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.15.7" SubVersion="" Date="2023-03-10">
+		<ChangeList>aTrust APP中H5应用支持单点登录</ChangeList>
+		<ChangeList>优化网络隔离内置规则</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.15.6" SubVersion="" Date="2023-02-17">
+		<ChangeList>支持动态密码规则下发</ChangeList>
+		<ChangeList>aTrust APP适配中英文</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.15.5" SubVersion="" Date="2023-01-18">
+		<ChangeList>支持主动修改密码</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.15.2" SubVersion="" Date="2022-12-30">
+		<ChangeList>应用商店支持应用搜索</ChangeList>
+		<ChangeList>应用商店支持状态显示</ChangeList>
+		<ChangeList>应用商店支持待更新应用展示</ChangeList>
+		<ChangeList>应用商店样式适配平板</ChangeList>
+		<ChangeList>应用商店支持查看应用详情</ChangeList>
+		<ChangeList>页面字体优化</ChangeList>
+		<ChangeList>增加华为机型后台解除网络限制的引导</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.14.4" SubVersion="" Date="2022-11-25">
+		<ChangeList>支持内网DNS下发</ChangeList>
+		<ChangeList>优化控制台封装加固应用的帮助文档</ChangeList>
+		<ChangeList>移动端性能打点日志优化</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.14.2" SubVersion="" Date="2022-11-04">
+		<ChangeList>优化隐私协议交互</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.14.1" SubVersion="" Date="2022-10-21">
+		<ChangeList>H5应用支持下载后图片预览</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.12.3" SubVersion="" Date="2022-09-30">
+		<ChangeList>IOS插件内存优化</ChangeList>
+		<ChangeList>H5应用支持拍照/上传图片/上传文件</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.12.1" SubVersion="" Date="2022-09-09">
+		<ChangeList>支持鸿蒙3.0</ChangeList>
+		<ChangeList>支持iOS16</ChangeList>
+		<ChangeList>支持封装子应用日志分享</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.11.1" SubVersion="" Date="2022-08-26">
+		<ChangeList>支持全网资源</ChangeList>
+		<ChangeList>接入模式支持鸿蒙3.0</ChangeList>
+		<ChangeList>支持IPV6接入</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.10.1" SubVersion="" Date="2022-08-12">
+		<ChangeList>平板模式支持</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.9.1" SubVersion="" Date="2022-07-22">
+		<ChangeList>L3VPN支持UDP</ChangeList>
+		<ChangeList>aTrust App体验优化</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.6.2" SubVersion="" Date="2022-07-05">
+		<ChangeList>新架构aTrust app bug修复</ChangeList>
+		<ChangeList>认证流程bug、数据迁移bug</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.6.1" SubVersion="" Date="2022-06-24">
+		<ChangeList>新架构aTrust app上架</ChangeList>
+		<ChangeList>支持离线转发</ChangeList>
+		<ChangeList>case认证支持域名spa</ChangeList>
+		<ChangeList>支持动态切换接入/门户模式</ChangeList>
+	</ChangeLog>
+</ChangeLogs>

@@ -43,6 +43,9 @@
 /* 退出 */
 "exit" = "Exit";
 
+/* 退出应用 */
+"exit_app" = "Exit App";
+
 /* 确定 */
 "confirm" = "OK";
 
@@ -118,6 +121,9 @@
 /* 公有用户不支持此类组合认证 */
 "configure_error" = "Public account does not support such combination of authentication methods. ";
 
+/* 因违反上线准入策略，您的账号已离线 */
+"violation_of_the_online_access_policy" = "Your account has been taken offline due to violation of the online access policy.";
+
 /* 重新获取验证码 */
 "re_get_sms_code" = "Send Again";
 
@@ -138,6 +144,8 @@
 
 /* 暂不支持硬件特征码认证 */
 "hardid_not_support" = "Hardware ID based authentication is not supported currently.";
+
+"sms_phone_check_failed" = "请输入正确的手机号码";
 
 /* 您的短信码仍在有效期内 */
 "sms_still_valid" = "The previous SMS code is still valid.";
@@ -188,7 +196,7 @@
 "get_radius_info_fail" = "Failed to get challenging information.";
 
 /* 正在建立加密网络 */
-"create_safety_network" = "Creating VPN tunnel...";
+"create_safety_network" = "Creating tunnel...";
 
 /* VPN会话已过期,请重新登录 */
 "invalid_session" = "Session timed out. Please sign in again.";
@@ -281,7 +289,7 @@
 "cannot_connect_to_server" = "Unable to connect to server.";
 
 /* 校验码错误 */
-"randcode_error" = "Verification Code Error";
+"randcode_error" = "Verification code is incorrect";
 
 /* app没开启录制 */
 "app_not_in_sso_mode" = "Unable to connect to server. Please start recording.";
@@ -312,6 +320,9 @@
 
 /* 单点登录录制 */
 "sso_record_title" = "SSO Credential Recording";
+
+/* 退出录制 */
+"exit_record" = "Exit Recording";
 
 /* 因管理策略限制，操作被禁止 */
 "filecrypt_img_tips" = "This operation is not allowed according to some policy. ";
@@ -424,11 +435,17 @@
 /* 此应用未在aWork应用商店发布，禁止使用 */
 "app_cannot_use" = "This application has not been published in aWork AppStore and is not available currently. ";
 
+/* 此应用需要在awork应用商店更新 */
+"app_need_update" = "The app has been replaced with other app with same name (%@) by administrator. Please go to aWork application store.";
+
 /* 该应用非当前应用商店下载，安全校验不通过，禁止使用！请在当前应用商店重新下载使用 */
 "app_security_check_failed" = "The app is not from the current application store. Security check did not pass. Using is terminated and you need to re-download in the current application store.";
 
 /* 当前应用不可用，描述文件缺失必要的信息，请联系管理员更新描述文件！ */
 "no_proper_groupid_found" = "Current app is not available. Configuration profile is corrupted. Please contact administrator to update the profile.";
+
+/* 您使用的证书的试用期即将结束，请联系管理员及时更换，以免对您业务造成影响 */
+"trial_cert_invalid_data" = "您使用的证书的试用期即将结束，请联系管理员及时更换，以免对您业务造成影响";
 
 /* ----------------------------------网络可视化提示---------------------------------- */
 "network_visualization_disconnect" = "Connection is dropped. Please try reconnecting.";
@@ -451,15 +468,26 @@
 
 "network_visualization_btnTitle_backhome" = "Back";
 
+/* ----------------------------------网络隔离可视化提示---------------------------------- */
+"network_isolate_visualization_prefix" = "受网络隔离规则限制,“";
+"network_isolate_visualization_suffix" = "”请求被拦截";
+"share_log_label" = "分享日志";
+
 /* ----------------------------------截屏审计---------------------------------- */
 "screen_shot_for_toast" = "Screen capture is forbidden. Your action is logged.";
+"need_setting_photo_authorization" = "Please set the permission to read the album first";
 
 /* ----------------------------------截屏阻断---------------------------------- */
 "screen_shot_for_lock_remind" = "Illegitimate screenshot action was detected and has been logged and reported. Please delete the screenshot right now to avoid legal responsibility.";
 "screen_shot_for_lock_delete" = "Delete Now";
 
-"screen_shot_for_lock_delete_failed" = "The app has enabled screenshot capture logging and will become unavailable temporarily if you take screenshot for another %@ times.";
+"screen_shot_for_lock_delete_failed" = "The app has enabled screenshot capture logging and will become unavailable temporarily if you take screenshot for another %ld times.";
 
+/* ----------------------------------分享隔离---------------------------------- */
+"emm_disable_send_mail" = "Disable send mail";
+
+/* ----------------------------------剪切板隔离---------------------------------- */
+"app_can_not_copy_tips" = "The security clipboard is set by the highly sensitive application. The current application cannot be copied";
 //------------------免密认证------------------
 //验证指纹
 "verify_the_fingerprint" = "Verify Fingerprint";
@@ -636,3 +664,139 @@
 "no_longer_alert" = "Do not show this again";
 
 "sapp_expired_title" = "About to Expire";
+
+/* ----------------------------------主从---------------------------------- */
+/* 默认主应用名称 */
+"default_main_app_name" = "Main App";
+
+/* 使用此应用，需要先安装主应用，提示title */
+"mainapp_non_install_title" = "Please install the %@";
+
+/* 对接非重构后aTrust，提示title */
+"atrustapp_non_rebuild_title" = "Please update the “%@”";
+
+/* 使用此应用，需要先安装主应用 提示message*/
+"mainapp_non_install_msg" = "Use of this application requires that %@ be installed, Please contact your administrator to get the installation package.";
+
+/* 对接非重构后aTrust，提示message */
+"atrustapp_non_rebuild_message" = "“%@”需要获取“%@”的网关登录信息，检测到当前“%@”的版本过低，无法正常获取，请更新后重试";
+
+/* 重新加载 */
+"reload" = "Reload";
+
+/* 同意 */
+"agree" = "agree";
+
+/* 拒绝 */
+"refuse" = "refuse";
+
+/* 下载 */
+"download" = "Download";
+
+/* 远端安装应用title */
+"sapp_update_title" = "“%@”有新版本，是否开始在后台更新？";
+
+/* 远端强制安装应用title */
+"sapp_force_update_title" = "请重新安装“%@”";
+
+/* 远端强制安装应用content */
+"sapp_force_update_content" = "检测到您已安装的“%@”与管理员发布的不一致，请卸载后重新安装";
+
+/* 本地安装应用title  */
+"sapp_update_title2" = "“%@”有新版本，是否更新？";
+
+/* aTrust安装应用title  */
+"sapp_update_title3" = "“%@”有新版本，是否前往“%@”进行更新？";
+
+/* 下载应用title */
+"sapp_download_title" = "正在下载最新版“%@”";
+
+/* 更新 */
+"update" = "Update";
+
+/* 安装“%@”失败 */
+"sapp_install_failed" = "Installation “%@” Failed";
+
+/* 未打开安全邮箱的本地网络权限，请前往“设置->安全邮箱”页面打开 */
+"sapp_install_failed_authorization" = "未打开%@的本地网络权限，请前往“设置->%@”页面打开";
+
+/* 立即前往 */
+"go_to_settings" = "立即前往";
+
+/* 下载“%@”失败 */
+"sapp_download_failed" = "Download “%@” Failed";
+
+/* 准备安装，稍后会自动退出，期间请勿关闭 */
+"install_progress_title" = "准备安装，稍后会自动退出，期间请勿关闭";
+
+/* 当前网络无连接，请检查网络后重试 */
+"sapp_download_failed_network_error" = "当前网络无连接，请检查网络后重试";
+
+/* 当前设备储存空间不足，请清理后重试 */
+"sapp_download_failed_nospace" = "当前设备储存空间不足，请清理后重试";
+
+/* 下载过程中出现异常，请稍后再试（错误码：%ld） */
+"sapp_download_failed_error" = "下载过程中出现异常，请稍后再试（错误码：%ld）";
+
+/* 安装过程中出现异常，请稍后再试（错误码：%ld） */
+"sapp_install_failed_error" = "安装过程中出现异常，请稍后再试（错误码：%ld）";
+
+/* 您下载的“%@”安装包与管理员发布的不一致，请联系管理员处理 */
+"sapp_download_failed_md5_check_error" = "您下载的“%@”安装包与管理员发布的不一致，请联系管理员处理";
+
+/* H5截屏阻断界面，返回atrust */
+"back_to_atrustapp_workspace" = "Back to aTrust";
+
+/* 校验码错误 */
+"randcode_error" = "Verification Code Error";
+
+/* 网络异常，请检查网络后重试 */
+"randcode_error_network" = "Network connection error occurred. Please check network connection and try again";
+
+/* 应用在控制台未开启录制，请进入录制界面后重试 */
+"randcode_error_verify_not_exist" = "Recording is not started in the console. Please enter the recording page of the console, and try to start recording again.";
+
+/* 验证码错误，请检查后重试 */
+"randcode_error_mismatch" = "Verification code is incorrect. Please check that and try again.";
+
+/* 管理员未授权，您无权访问此应用 */
+"randcode_error_no_permission" = "The administrator does not authorize you to access this application";
+
+/* 请输入控制台中的验证码 */
+"SSORecord_fillin_sec_code_v2" = "Please enter the verification code in the console";
+
+"sso_rerocd_success" = "The console exits the recording interface. The recording is complete";
+
+"sso_rerocd_fail_disconnect" = "The console exits the recording interface. The recording is complete";
+
+/* ----------------------------------图形验证码---------------------------------- */
+"randcode_verification_code" = "Captcha";
+"randcode_select_text_to_verification" = "Select characters in the image for security verification";
+"randcode_verification_fail" = "Verification failed. Please try again";
+"randcode_cancel_randcode" = "Cancel the graphic verification code";
+"get_randcode_fail" = "Failed to load verification code";
+
+/* 本地网络权限 */
+"localnetwork_no_limit_title" = "“%@” requests local network permission.";
+"localnetwork_no_limit_content" = "Please go to Settings > Privacy > Local Network to grant the app the permission to ensure it can connect to the network.";
+"localnetwork_no_limit_go_to_open" = "Go Now";
+
+/* 日志上传*/
+"upload_log_title" = "管理员邀请您分享“%@”的日志";
+"upload_log_desc" = "为解决您反馈的应用使用问题，管理员申请获取您的应用日志以便排查问题，希望您及时分享";
+"upload_log_cancel" = "取消";
+"upload_log_share_now" = "立即分享";
+"upload_log_cancel_title" = "确定不分享日志吗？";
+"upload_log_cancel_desc" = "应用日志主要用于排查异常问题，日志中不会包含您的隐私信息，确定不分享吗？";
+"upload_log_not_share" = "不分享";
+"upload_log_share" = "分享";
+"upload_log_process_title" = "正在整理日志文件，请勿退出应用...";
+"upload_log_bg_process" = "后台运行";
+"upload_log_success_title" = "分享成功";
+"upload_log_failed_title" = "分享失败";
+"upload_log_success_desc" = "您的日志已提交给相关人员处理，感谢您的配合";
+"upload_log_close_btn_title" = "关闭";
+"upload_log_retry_btn_title" = "重试";
+"upload_log_shared_btn_title" = "确定";
+"upload_log_shared_title" = "您已处理过日志分享任务";
+"upload_log_processing_title" = "当前日志分享任务已在后台运行";

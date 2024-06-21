@@ -8,46 +8,13 @@
 #import <Foundation/Foundation.h>
 #import "SFMobileSecurityTypes.h"
 #import "SFMobileSecurityObject.h"
-#import "SFMobileSecurityProtocol.h"
+#import "SFSecurityProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-#pragma mark - 回调定义
-
-/*! @brief 获取VPN隧道状态的block
- *  @param status VPN隧道状态
- */
-typedef void (^ SFTunnelStatusBlock)(SFTunnelStatus status);
-
-/*! @brief 重置密码的block
- * 如果为nil则修改成功;否则修改密码错误,读取NSError的domain
- * @param error 重置密码错误
- */
-typedef void (^ SFResetPasswordBlock)(NSError *__nullable error);
-
-/*! @brief 重新获取短信校验码的block
- * 如果为nil则获取短信验证码成功；否则获取短信验证码失败
- * @param message 短信验证码信息
- * @param error 重新获取短信校验码错误
- */
-typedef void (^ SFRegetSmsCodeBlock)(SmsMessage *__nullable message, NSError *__nullable error);
-
-/*! @brief 重新获取图形校验码的block
- *
- * @param randcode 短信验证码信息
- * @param error 重新获取图形校验码错误
- */
-typedef void (^ SFRegetRandCodeBlock)(NSData *__nullable randcode, NSError *__nullable error);
-
-/*! @brief 选路block
- *
- * @param error 选路结果错误
- */
-typedef void (^ SFSelectLineBlock)(NSError *__nullable error);
-
 @interface SFMobileSecuritySDK : NSObject
 
-@property(nonatomic, copy, readonly)    NSString *sdkVersion;   //SFSDK版本号
+@property (nonatomic, copy, readonly) NSString *sdkVersion;     //SFSDK版本号
 @property (nonatomic, assign, readonly) SFSDKMode sdkMode;      //SDK模式
 @property (nonatomic, assign, readonly) int sdkFlags;           //SDK配置选项
 
@@ -105,13 +72,6 @@ typedef void (^ SFSelectLineBlock)(NSError *__nullable error);
 - (NSString * __nullable)getSDKOption:(SFSDKOption)optionKey;
 
 /**
- * @brief 获取内部配置
- * @param key 关键字
- * @return value
- */
-- (NSString* __nullable)getInternalConf:(NSString*)key;
-
-/**
  * 清除所有数据
  */
 - (void)clearAllData;
@@ -146,6 +106,25 @@ typedef void (^ SFSelectLineBlock)(NSError *__nullable error);
 - (BOOL)startPasswordAuth:(NSURL * __nonnull)url userName:(NSString * __nonnull)username password:(NSString * __nonnull)password;
 
 /**
+ * @brief 设置通用https认证回调
+ * @discussion
+ * 调用认证相关接口之前一定要先设置此回调
+ * 主应用调用，子应用调用会导致断言
+ * @param delegate 回调对象,为nil则反注册
+ */
+- (void)setCommonHttpsRequestResultDelegate:(id<SFCommonHttpsRequestResultDelegate>)delegate;
+
+/**
+ * @brief  通用https认证方式 该认证只是做透传
+ * @discussion
+ * 此接口调用之前必须已经调用过setstartCommonHttpsResultDelegate并设置了非空的认证回调
+ * @param url 认证的url信息
+ * @param type 认证类型
+ * @param password 认证参数
+ */
+- (BOOL)startCommonHttpsAuth:(NSURL * __nonnull)url type:(NSString * __nonnull)type value:(NSString * __nonnull)value;
+
+/**
  * @brief  证书主认证方式
  * @discussion
  * 此接口调用之前必须已经调用过setAuthResultDelegate并设置了非空的认证回调
@@ -157,14 +136,17 @@ typedef void (^ SFSelectLineBlock)(NSError *__nullable error);
 - (BOOL)startCertAuth:(NSURL * __nonnull)url certPath:(NSString * __nonnull)path  password:(NSString * __nonnull)password;
 
 /**
- * @brief  钉钉/微信认证方式
+ * @brief 钉钉/企业微信认证方式
  * @discussion
  * 此接口调用之前必须已经调用过setAuthResultDelegate并设置了非空的认证回调
  * 主应用调用，子应用调用会导致断言
  * @param url 认证的url信息
- * @param code 微信/钉钉code
+ * @param info 钉钉/企业微信认证信息，必须包含如下key
+ * kAuthKeyAuthInfo 透传的认证信息
+ * kAuthKeyAuthType 认证类型为kAuthValueDingTalk / kAuthValueQyWechat / kAuthValueZwWechat
+ * 参考 SFMobileSecurityTypes.h
  */
-- (BOOL)startDingTalkAuth:(NSURL * __nonnull)url code:(NSString * __nonnull)code;
+- (BOOL)startThirdAuth:(NSURL * __nonnull)url authInfo:(NSDictionary *__nullable)info;
 
 /**
  * @brief  通用定制认证方式,异步接口
@@ -192,24 +174,19 @@ typedef void (^ SFSelectLineBlock)(NSError *__nullable error);
  * Radius认证：type用SFAuthTypeRadius, data用kAuthKeyRadiusCode为key
  * 更新密码认证：type用SFAuthTypeRenewPassword, data用kAuthKeyRenewNewPassword为key，如果有旧密码带上kAuthKeyRenewOldPassword
  * 用户透传数据在data中用kAuthKeyUserContentData为key
+ * 辅助认证多选一在data中用kAuthKeySecondAuthId为key，value为对应辅助认证的authId
  * @return YES:调用认证方法成功
  */
 - (BOOL)doSecondaryAuth:(SFAuthType)type data:(NSDictionary *__nullable)data;
 
 /**
- * @brief  是否支持免密认证
+ * @brief 免密上线
  * @discussion
- * 主应用调用，子应用调用会导致断言
+ * 已登录过且支持免密时，接口返回YES，内部自动免密上线，免密失败会调用注销回调，成功无回调
+ * 未登录过或不支持免密时，接口返回NO，需要使用其他主认证方式上线
+ * @return YES 免密调用成功 NO 免密调用失败
  */
-- (BOOL)supportTicketAuth;
-
-/**
- * @brief 免密主认证方式
- * @discussion
- * 主应用调用，子应用调用会导致断言
- * 此接口调用之前必须已经调用过setAuthResultDelegate并设置了非空的认证回调
- */
-- (void)startTicketAuth;
+- (BOOL)startAutoTicket;
 
 /**
  * @brief 异步接口，取消vpn登录
@@ -217,6 +194,14 @@ typedef void (^ SFSelectLineBlock)(NSError *__nullable error);
  * 主应用调用，子应用调用会导致断言
  */
 - (void)cancelAuth;
+
+#pragma mark - SFCommonHttpsResultDelegate
+/**
+ * @brief 通用https接口，透传第三方认证结果回调
+ * @discussion
+ * 主应用调用，子应用调用会导致断言
+ */
+- (void)onRequestResult:(SFBaseMessage *) msg;
 
 #pragma mark - 注销
 
@@ -268,83 +253,6 @@ typedef void (^ SFSelectLineBlock)(NSError *__nullable error);
 - (NSArray <NSString *> * __nullable)getWhiteApplist;
 
 /**
- * @brief
- * 外部更新全局安全策略, 注意 SDK初始化flags为SDKFlagsSupportManagePolicy模式，外部更新策略才生效
- * @param jsonPolicy 全局策略信息，设置多应用列表信息
- *  {
- *        "appId": "com.sangfor.awork",
- *        "screenShot": {
- *            "enable": 1,
- *            "mode": 0,
- *            "settings": {}
- *        },
- *        "screenShotAudit": {
- *            "enable": 1,
- *            "mode": 0,
- *            "settings": {}
- *        },
- *        "waterMark": {
- *            "enable": 1,
- *            "mode": 0,
- *            "settings": {
- *                "waterMarkGradient": "30",
- *                "waterMarkIntervalY": "20",
- *                "waterMarkFontSize": "10",
- *                "waterMarkBorderOpacity": "70",
- *                "waterMarkIntervalX": "20",
- *                "waterMarkContentOpacity": "70",
- *                "watermarkStatus": 0,
- *                "waterMarkContentColor": "AAAAAA",
- *                "waterMarkBorderColor": "AAAAAA",
- *                "waterMarkBorderSize": "0",
- *                "waterMarkExpireMsg": "试用证书不可商用"
- *            }
- *        },
- *        "networkIsolation": {
- *            "enable": 0,
- *            "mode": 0,
- *            "settings": {
- *                "whiteList": ["com.sangfor.vpn.awork", "com.sangfor.easyconnect"],
- *                "addr": {}
- *            }
- *        },
- *        "backgroudBlur": {
- *            "enable": 1,
- *            "mode": 0,
- *            "settings": {}
- *        },
- *        "shareIsolation": {
- *            "enable": 1,
- *            "mode": 14,
- *            "settings": {
- *                "androidWhiteList" :["",""]
- *                "iosWhiteList" : {"urlSchemes":[],"bundleIds":[]}
- *                "whiteList": {
- *                    "android": [""],
- *                    "ios": {
- *                        "urlScheme": [""],
- *                        "bundleId": [""]
- *                    }
- *                }
- *            }
- *        },
- *        "clipboardIsolation": {
- *            "enable": 1,
- *            "mode": 14,
- *            "setting": {
- *                "allowCopySize": 0
- *            }
- *        }
- *    }
- * @return SFUpdatePolicyCode
- * SFUpdatePolicySuccess            //更新成功
- * SFUpdatePolicyFormatError        //策略格式错误
- * SFUpdatePolicyNotAuth            //未通过认证
- * SFUpdatePolicyInnerError         //内部错误
- */
-- (SFUpdatePolicyCode)updatePolicy:(NSString * __nonnull)jsonPolicy;
-
-/**
  * 设置自定义网络隔离白名单，此功能是为兼容老版本vpn设置。
  * 老版本vpn不支持下发网络隔离白名单策略给SDK，因此提供此接口以便用户自定义网络隔离白名单、
  *
@@ -393,6 +301,17 @@ typedef void (^ SFSelectLineBlock)(NSError *__nullable error);
  */
 - (NSString*)getSDKLogDir;
 
+/**
+ * @brief 设置日志级别
+ */
+- (void)setLogLevel:(SFLogLevel)level;
+
+/**
+ * @brief 设置日志控制台输出
+ * @param enable YES代表输出控制台 NO代表不输出控制台
+ */
+- (void)setLogConsoleEnable:(BOOL)enable;
+
 #pragma mark - 密码
 /**
  * @brief  主动调用修改VPN账号密码
@@ -403,6 +322,18 @@ typedef void (^ SFSelectLineBlock)(NSError *__nullable error);
  */
 - (void)resetPassword:(NSString * __nonnull)oldpwd newPassword:(NSString * __nonnull)newpwd handler:(SFResetPasswordBlock)comp;
 
+/**
+ * 获取修改密码的规则
+ * @param comp 结果回调
+ */
+- (void)getPswStrategy:(SFGetPswStrategyBlock)comp;
+
+/**
+ * 判断当前用户是否支持修改密码
+ * @return true 支持  false 不支持
+ */
+- (BOOL)allowResetPassword;
+
 #pragma mark - 重新获取验证码
 
 /**
@@ -411,11 +342,49 @@ typedef void (^ SFSelectLineBlock)(NSError *__nullable error);
 - (void)regetSmsCode:(SFRegetSmsCodeBlock)comp;
 
 /**
+ * @brief 异步请求，重新获取短信验证码
+ * @param authId 辅助认证多选一由于有多个网关的场景，需要传对应的authId
+ */
+- (void)regetSmsWithAuthId:(NSString *)authId Code:(SFRegetSmsCodeBlock)comp;
+
+/**
  * @brief 同步请求，重新获取图形校验码
  * @discussion
  * 阻塞请求，返回图片信息，用于更新图形校验码
  */
 - (void)regetRandCode:(SFRegetRandCodeBlock)comp;
+
+#pragma mark - SPA
+
+/**
+ * @brief 同步接口，设置SPA配置
+ * @discussion
+ * @spaConfig SPA配置信息
+ * @comp 设置spa接口返回值回调
+ * 阻塞接口,设置SPA配置,并返回解析结果
+ */
+- (void)setSPAConfig:(NSString *)spaConfig complete:(SFSetSpaConfigBlock)comp;
+
+/**
+ * @brief 判断某个URL的SPA种子是否存在
+ * @url url地址
+ * @return YES表示已经该URL存在种子
+ */
+- (BOOL)isSpaSeedExist:(NSString *)url;
+
+#pragma mark - 隧道
+/// 启动插件
+- (void)startTunnel;
+
+/// 停止插件
+- (void)stopTunnel;
+
+/// 获取当前隧道状态
+- (SFTunnelStatus)getTunnelStatus;
+
+/// 设置隧道状态代理
+/// @param delegate 代理对象
+- (void)setTunnelStatusDelegate:(nullable id<SFTunnelStatusDelegate>)delegate;
 
 #pragma mark - 工具方法
 
@@ -438,6 +407,47 @@ typedef void (^ SFSelectLineBlock)(NSError *__nullable error);
  * @return YES表示已经开启
  */
 + (BOOL)isDevicePasswordOn;
+
+/**
+ * 判断当前服务器是否是sdp服务器
+ * @return YES 是  NO 不是
+ */
+- (BOOL)isSDPServce;
+
+#pragma mark --远程获取日志相关接口
+/**
+ * 自定义实现日志上传
+ * @brief delegate 回调对象
+ */
+- (void)registerUploadLopDelegate:(id<SFUploadLogDelegate>)delegate;
+
+/**
+ * 当前任务是否已被处理
+ * @param randCode 日志上传任务对应的id
+ */
+- (BOOL)needProcess:(NSString *)randCode;
+
+/**
+ * 上传日志接口
+ * @param randCode 日志上传任务对应的id
+ */
+- (void)uploadLog:(NSString *)randCode;
+
+/**
+ * 拒绝上传
+ * @param randCode 日志上传任务对应的id
+ */
+- (void)reUploadLog:(NSString *)randCode;
+
+/**
+ * 上传失败，重新上传
+ * @param randCode 日志上传任务对应的id
+ */
+- (void)refuseUploadLog:(NSString *)randCode;
+
+#pragma mark --通用事件传递接口
+- (void)setGenericNotificationDelegate:(id<SFGenericNotificationDelegate>)delegate;
+
 @end
 
 NS_ASSUME_NONNULL_END

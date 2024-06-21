@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<language>
+    <zh_CN>
+        <infos>
+            <info code="10000" note="密码必须包含数字" />
+            <info code="10001" note="密码必须包含字母" />
+            <info code="10002" note="密码必须包含特殊字符(支持空格和 ~!$@#%^&amp;*()_+-={}[];:'|<>`&quot;,./?\)" />
+            <info code="10003" note="密码长度至少8位" />
+            <info code="10004" note="密码不能包含用户名" />
+            <info code="10005" note="不能为常见弱密码" />
+        </infos>
+    </zh_CN>
+    <en_US>
+        <infos>
+            <info code="10000" note="Password must contain digits." />
+            <info code="10001" note="Password must contain letters." />
+            <info code="10002" note="Password must contain one of the following special characters(~!$@#%^&amp;*()_+-={}[];:'|<>`&quot;,./?\)" />
+            <info code="10003" note="Password length cannot be less than 8." />
+            <info code="10004" note="Password cannot contain username." />
+            <info code="10005" note="Password cannot be weak password." />
+        </infos>
+    </en_US>
+</language>

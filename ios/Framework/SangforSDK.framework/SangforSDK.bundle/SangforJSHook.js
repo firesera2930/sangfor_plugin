@@ -59,7 +59,10 @@ var __values = (this && this.__values) || function (o) {
     //此方法只是为了给OC层打日志
     sendLogToOC = function(txt) {
         try {
-            window.prompt("SendLogToOC", txt);  //此方式暂未发现冲突
+            //这里要去掉日志打印，解决长沙银行邮件内容页面回复没有显示出来的问题，TD202103261167
+            //东证资管价值陪伴地图无法显示出来，TD202104061208
+            //打开日志打印后播放腾讯视频会自动暂停 Q2023032100454,视频链接：https://m.v.qq.com/z/msite/play-short/index.html?cid=&vid=p33163m31ih
+//            window.prompt("SendLogToOC", txt);  //此处给客户出包建议关闭掉，已有两个客户是这个日志接口导致的问题了
 //            window.webkit.messageHandlers.fix_sync_ajax_sendlog.postMessage(txt); //这种OC交互方式和中石油的瑞信app中的“考勤打卡”冲突了，他们判断了window.webkit
         } catch (e) {
  
@@ -228,6 +231,16 @@ var __values = (this && this.__values) || function (o) {
         }
     }
     
+    var events = ['load', 'loadend', 'timeout', 'error', 'readystatechange', 'abort'];
+    //fix 粤政易在onload拿event的xhr为原始的xhr
+    function configEvent(event, xhrProxy) {
+        var e = {};
+        for (var attr in event) e[attr] = event[attr];
+        // xhrProxy instead
+        e.target = e.currentTarget = xhrProxy
+        return e;
+    }
+    
     //Ajax的hook工具方法
     function sf_initHookAjaxMethod(ob) {
     
@@ -259,14 +272,21 @@ var __values = (this && this.__values) || function (o) {
                             get: getterFactory(attr),
                             set: setterFactory(attr),
                             enumerable: true,
-							configurable: true
+						    configurable: true
                         })
                     }
                 }
                 this.sf_xhr = sf_xhr;
     
             }
-    
+            XMLHttpRequest.DONE = window[realXhr].DONE;
+            XMLHttpRequest.HEADERS_RECEIVED = window[realXhr].HEADERS_RECEIVED;
+            XMLHttpRequest.LOADING = window[realXhr].LOADING;
+            XMLHttpRequest.OPENED = window[realXhr].OPENED;
+            XMLHttpRequest.UNSENT = window[realXhr].UNSENT;
+            Object.defineProperty(XMLHttpRequest, 'prototype', {
+                value: window[realXhr].prototype
+            })
             // Generate getter for attributes of xhr
             function getterFactory(attr) {
                 return function () {
@@ -283,10 +303,19 @@ var __values = (this && this.__values) || function (o) {
                     var sf_xhr = this.sf_xhr;
                     var that = this;
                     var hook = proxy[attr];
-                    if (typeof hook === "function") {
-                        // hook  event callbacks such as `onload`、`onreadystatechange`...
-                        sf_xhr[attr] = function () {
-                            proxy[attr](that) || v.apply(sf_xhr, arguments);
+//                    if (typeof hook === "function") {
+//                        // hook  event callbacks such as `onload`、`onreadystatechange`...
+//                        sf_xhr[attr] = function () {
+//                            proxy[attr](that) || v.apply(sf_xhr, arguments);
+//                        }
+//                    } else
+                    //fix: 粤政易在onload中拿的event的target去判断是否为已经发起的请求，导致异常
+                    if (attr.substring(0, 2) === 'on') {
+                        that[attr + "_"] = v;
+                        sf_xhr[attr] = function (e) {
+                            e = configEvent(e, that)
+                            var ret = proxy[attr] && proxy[attr].call(that, sf_xhr, e)
+                            ret || v.call(that, e);
                         }
                     } else {
                         //If the attribute isn't writable, generate proxy attribute
@@ -447,6 +476,26 @@ var __values = (this && this.__values) || function (o) {
                 sendLogToOC("formData to Json error : " + error);
             });
         };
+
+        // 分片传输场景无法从file对象中获取到type的值
+        // 但对应的base64字符串中可以获取到
+        SFJSBridgeUtil.getMimeTypeFromBase64 = function(base64, fileType) {
+            // fileType存在值不需要从base64中获取
+            if (fileType && fileType.length > 0) {
+                return fileType;
+            }
+
+            // ios14.4机型，分片上传base64也是没有对应的类型，这个时候默认使用二进制类型去表示
+            // 异常数据："data::base64. AAAAHGZUeXBXCAGAAAAAHHOICAAAAAI..."
+            // 正常数据："data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA..."
+            mimetype = base64.split(';')[0].split(':')[1]
+            if (typeof mimetype === "string" && mimetype.trim() === "") {
+                return 'application/octet-stream'
+            }
+            
+            return mimetype
+        };
+
         /**
          * 读取单个文件数据，并转成 base64，最后返回 json 对象
          * @param file
@@ -458,10 +507,10 @@ var __values = (this && this.__values) || function (o) {
                 reader.onload = function (ev) {
                     var base64 = ev.target.result;
                     var formDataFile = {
-                        name: file instanceof File ? file.name : '',
-                        lastModified: file instanceof File ? file.lastModified : 0,
+                        name: file?.name ?? '',
+                        lastModified: file?.lastModified ?? 0,
                         size: file.size,
-                        type: file.type,
+                        type: SFJSBridgeUtil.getMimeTypeFromBase64(base64, file.type),
                         data: base64
                     };
                     resolve(formDataFile);
@@ -475,16 +524,22 @@ var __values = (this && this.__values) || function (o) {
         };
 
         SFJSBridgeUtil.getIOSVersion = function (userAgent) {
-            var ua = userAgent.toLowerCase();
-            if(ua.indexOf("like mac os x") > 0){
-               var reg = /os [\d._]*/gi ;
-               var verinfo = ua.match(reg) ;
-               var version = (verinfo+"").replace(/[^0-9|_.]/ig,"").replace(/_/ig,".");
-               var arr = version.split(".");
-               if (arr[0]) {
-                    return parseInt(arr[0]);
-                }
-            }
+            if (window.sf_ios_version) {
+                let iosVersion = parseInt(window.sf_ios_version);
+                console.log('current system version: ${iosVersion}');
+                return iosVersion;
+            } else {
+                var ua = userAgent.toLowerCase();
+                if(ua.indexOf("like mac os x") > 0){
+                   var reg = /os [\d._]*/gi ;
+                   var verinfo = ua.match(reg) ;
+                   var version = (verinfo+"").replace(/[^0-9|_.]/ig,"").replace(/_/ig,".");
+                   var arr = version.split(".");
+                   if (arr[0]) {
+                        return parseInt(arr[0]);
+                    }
+                }
+            }
             return 0;
         }
 
@@ -536,13 +591,44 @@ var __values = (this && this.__values) || function (o) {
                 }
             }
         },
+        addEventListener: function (args, xhr) {
+            var _this = this;
+            //执行处理类的this对象，如果是对象则指向handle，如果是funtion就是this
+            var that = _this
+            if (events.indexOf(args[0]) !== -1) {
+                var handler = args[1];
+                if (typeof handler != "function") {
+                    that = handler
+                    handler = handler.handleEvent
+                }
+                xhr.addEventListener(args[0], function (e) {
+                    var event = configEvent(e, _this);
+                    event.type = args[0];
+                    event.isTrusted = true;
+                    handler.call(that, event);
+                });
+                return true;
+            }
+        },
         //拦截方法
         open: function (arg, xhr) {
             try {
+                var iosVersion = SFJSBridgeUtil.getIOSVersion(navigator.userAgent);
+                xhr.iosVersion = iosVersion;
+                
                 //函数参数xhr是真实的xhr
-                sendLogToOC("open called: method:" + arg[0] + ", url:" + arg[1] + ", async:" + arg[2])
+                // 这里要去掉日志打印，解决长沙银行邮件内容页面回复没有显示出来的问题，TD202103261167
+                // 原因是日志打印使用了window.prompt函数影响了原有h5的逻辑，导致抛出异常
+                 sendLogToOC("open called: method:" + arg[0] + ", url:" + arg[1] + ", async:" + arg[2])
                 //如果是异步请求非GET和HEAD都可能存在body丢失，则需要将body内容传给OC，因为iOS11和10中需要
                 if (!((arg[0] == "GET") || (arg[0] == "get") || (arg[0] == "HEAD") || (arg[0] == "head"))) {
+
+                    // iOS15及以上，如果是同步请求，则无需修复body, 测试不修复body，body也能正常，反而会导致SFJSBridgeUtil.convertFormDataToJson不会返回， TD2022122900129
+                    if (arg[2] != undefined && !arg[2] && iosVersion >= 15) {
+                        sendLogToOC("no need fixbody and fixSync")
+                        return false;
+                    }
+
                     xhr.needFixDropBody = true;
                     xhr.method = arg[0];
                     xhr.uniqueID = Math.round(Math.random() * 10000000) + ""
@@ -551,11 +637,9 @@ var __values = (this && this.__values) || function (o) {
                         "method": arg[0],
                         "url": arg[1],
                     }
-                 }
+                }
 
-                var iosVersion = SFJSBridgeUtil.getIOSVersion(navigator.userAgent);
-                xhr.iosVersion = iosVersion;
-                if(arg[2] != undefined && !arg[2] && iosVersion <= 12) {
+                if (arg[2] != undefined && !arg[2] && iosVersion <= 12) {
                     //如果是同步请求才走下面流程，保存参数，准备传给OC
                     xhr.isSync = true
                     xhr.uniqueID = Math.round(Math.random() * 100000)
@@ -590,7 +674,11 @@ var __values = (this && this.__values) || function (o) {
 					if (data instanceof Uint8Array) {
 						data = Array.from(data)
 					} else {
-						data = data.toString()
+                        //TD:202106210778
+                        //<=iOS12.4版本如果data未null,data.toString会crash,导致请求丢失
+                        if (data) {
+                            data = data.toString()
+                        }
 					}
 					xhr.requestParamsToOC.sendBody = data
                     //利用prompt方法与OC进行同步交互，把请求参数传入，OC端会传出请求结果，对应OC中的方法AjaxHookHelper_WKUIDelegate_webView:runJavaScriptTextInputPanelWithPrompt:
@@ -642,18 +730,39 @@ var __values = (this && this.__values) || function (o) {
                                 sendLogToOC("FixDropBodyByte.")
                             }
                         } else if((data instanceof FormData) || (window.sf_oriFormData && data instanceof window.sf_oriFormData)) {
+                            //iOS12以上也会有body丢失的问题，测试上传一个3M的MOV文件就会丢失body
+                            //但是如果Formdata中的数据都不是File类型，那也不会丢失body，此时就没必要修复body,测试过500KB的内容放到Formdata中也不会丢
+                            if (xhr.iosVersion && (xhr.iosVersion > 12)) {
+                                //判断formdata中的数据是否包含非String类型
+                                var isFileValueInFormData = false;
+                                for (var key of data.keys()) {
+                                    curValue = data.get(key);
+                                    if (typeof curValue !== 'string') {
+                                        isFileValueInFormData = true;
+                                        break;
+                                    }
+                                }
+                                
+                                if (!isFileValueInFormData) {
+                                    //此时不需要修复body，走原函数
+                                    sendLogToOC("isFileValueInFormData = false，no need fixBody")
+                                    return false;
+                                }
+                            }
+                            
                             sendLogToOC("body data is FormData...");
                             xhr.setRequestHeader("sangfor_sftaskid", xhr.requestParamsToOC.sangfor_sftaskid)
                             xhr.setRequestHeader("sangfor_sftaskid_cors" + xhr.requestParamsToOC.sangfor_sftaskid, "1")
                             // formData 表单
                             xhr.setRequestHeader("sangfor_isformdata", "1");
-                            SFJSBridgeUtil.convertFormDataToJson(data, function (json) {
                                 
+                            SFJSBridgeUtil.convertFormDataToJson(data, function (json) {
                                 sendLogToOC("parse formData json:" + JSON.stringify(json));
                                 xhr.requestParamsToOC.data = json;
                                 window.prompt("FixDropBodyFormData", JSON.stringify(xhr.requestParamsToOC))
                              });
 						} else if (data instanceof File) {
+                            //iOS16也会有body丢失的问题，测试上传一个0.2M的普通文件也会丢失body
 							sendLogToOC("body data is File...");
 							var form = new FormData();
 							form.append('file', data);
@@ -663,11 +772,10 @@ var __values = (this && this.__values) || function (o) {
 							xhr.setRequestHeader("sangfor_isformdata", "1");
 							SFJSBridgeUtil.convertFormDataToJson(form, function (json) {
 
-								sendLogToOC("parse formData json:" + JSON.stringify(json));
-								xhr.requestParamsToOC.data = json;
-								window.prompt("FixDropBodyFormData", JSON.stringify(xhr.requestParamsToOC))
+							    sendLogToOC("parse formData json:" + JSON.stringify(json));
+							    xhr.requestParamsToOC.data = json;
+							    window.prompt("FixDropBodyFormData", JSON.stringify(xhr.requestParamsToOC))
 							});
-
 						} else {
                             if(xhr.iosVersion && (xhr.iosVersion < 12)) {
                                 sendLogToOC("body data is Others such as String...");
@@ -757,15 +865,24 @@ var __values = (this && this.__values) || function (o) {
                 var body = "";
                 //fetch 默认第一个参数是url或者request对象，第二个可选
                 if (ori instanceof Request) {
+
+                    // 如果是ReadableStream类型的, 需要clone再判断，不然原对象会被破坏
+                    // 在调用fetch的时候会提示: ReadableStream uploading is not supported
+                    const cloneRequest = ori.clone();
+                    if (cloneRequest.body && cloneRequest.body instanceof ReadableStream) {
+                        return [ori, config];
+                    }
+                    
                     url = ori.url;
-                    if (ori.method && config.method != "undefined") {
+                    if (ori.method && ori.method != "undefined") {
                         method = ori.method
                     }
                     if (ori.headers) {
                         headers = ori.headers
+                    } else {
+                        ori.headers = headers;
                     }
-
-                    if (ori.body) {
+                    if (ori.body) { //此body如果传入formdata类型为ReadableStream，当前不支持修复，但是测试iOS16不修复本身也没有问题
                         body = ori.body
                     }
                 } else {
@@ -783,6 +900,8 @@ var __values = (this && this.__values) || function (o) {
                     
                     if (config.headers) {
                         headers = config.headers;
+                    } else {
+                        config.headers = headers;
                     }
                     
                     if (config.body) {
@@ -851,7 +970,34 @@ var __values = (this && this.__values) || function (o) {
             return [ori, config];
         }
     }
-    
+    function sf_define_prop() {
+        XMLHttpRequest.UNSENT= 0;
+        XMLHttpRequest.OPENED= 1;
+        XMLHttpRequest.HEADERS_RECEIVED = 2;
+        XMLHttpRequest.LOADING= 3;
+        XMLHttpRequest.DONE= 4;
+    }
+
+    //################################### cookie hook方法 ###########################################
+    function sf_hookCookie() {
+        try {
+            var cookieDesc = Object.getOwnPropertyDescriptor(Document.prototype, 'cookie') ||
+                            Object.getOwnPropertyDescriptor(HTMLDocument.prototype, 'cookie');
+            if (cookieDesc && cookieDesc.configurable) {
+                Object.defineProperty(document, 'cookie', {
+                    get: function () {
+                        return cookieDesc.get.call(document);
+                    },
+                    set: function (val) {
+                        window.webkit.messageHandlers.sf_setCookieHandler.postMessage(val);
+                        cookieDesc.set.call(document, val);
+                    }
+                });
+            }
+        } catch (e) {
+            sendLogToOC("Except in hook cookie:" + e.message);
+        }
+    }
     //####################################################开始hook XMLHttpRequest################
     if (window.sanforallhook) {
         sendLogToOC("no repeat hook")
@@ -864,10 +1010,16 @@ var __values = (this && this.__values) || function (o) {
     sf_initHookAjaxMethod(window)  //开始创建hookajax的工具函数
     sendLogToOC("sf_xhr_Hook OK,href is: " + window.location.href)
     sf_HookAjax(sf_AjaxHookProxy); //真正的使用AjaxHook
-
+    sf_define_prop(); //重新定义XMLHttpRequest的属性
     //####################################################开始hook fetch################
     sf_Hook_fetch(window).register(sf_FetchHookProxy);
     sendLogToOC("sf_fetch_Hook OK,href is: " + window.location.href);
+    //####################################################开始hook cookie################
+    if (window.sf_isHookCookie) {
+        console.log('sf_hookCookie OK')
+        sf_hookCookie();
+    }
+    sendLogToOC("sf_hookCookie OK,href is: " + window.location.href);
 
     sf_hookFormData(); //开始hook FormData
 })(window);

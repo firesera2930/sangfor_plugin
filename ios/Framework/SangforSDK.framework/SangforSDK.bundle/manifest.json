@@ -1,0 +1,29 @@
+{
+	"LocalInstall" : [
+		{
+			"version" : "1.0.0",
+			"date" : "2021-12-14",
+			"platform" : "ios"
+		}
+	],
+	"AppLock" : [
+		{
+			"version" : "1.0.0",
+			"date" : "2021-12-30"
+		}
+	],
+	"Rebuild" : [
+		{
+			"version" : "1.0.0",
+			"date" : "2021-12-30"
+		}
+
+	],
+	"UpdateSubApp" : [
+		{
+			"version" : "1.0.0",
+			"date" : "2022-08-31",
+			"platform" : "ios"
+		}
+    ]
+}

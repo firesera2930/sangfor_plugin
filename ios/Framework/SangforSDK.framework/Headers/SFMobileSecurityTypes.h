@@ -7,54 +7,52 @@
 
 #ifndef SFMobileSecurityTypes_h
 #define SFMobileSecurityTypes_h
+
 #import <Foundation/Foundation.h>
+#import "SFSecurityTypes.h"
+#import "SFSecurityObject.h"
+
+NS_ASSUME_NONNULL_BEGIN
 
 typedef NSString *SFAuthKeyName NS_EXTENSIBLE_STRING_ENUM;
 typedef NSString *SFOptionsName NS_EXTENSIBLE_STRING_ENUM;
 typedef NSString *SFCommandName NS_EXTENSIBLE_STRING_ENUM;
+typedef NSString *SFAuthValueName NS_EXTENSIBLE_STRING_ENUM;
 
-//#ifdef __OBJC__
 /** 认证对应的key */
-static const SFAuthKeyName kAuthKeyPassUsername         = @"svpn_name";              //用户名密码认证用户名信息
-static const SFAuthKeyName kAuthKeyPassPassword         = @"svpn_password";              //用户名密码认证密码信息
-static const SFAuthKeyName kAuthKeyCertPath             = @"svpn_cert_path";               //证书认证路径信息
-static const SFAuthKeyName kAuthKeyCertPassword         = @"svpn_cert_password";              //证书认证密码信息
-static const SFAuthKeyName kAuthKeyRandCode             = @"svpn_rand_code";                  //图形校验认证码
-static const SFAuthKeyName kAuthKeySMS                  = @"svpn_inputsms";                       //短信验证码
-static const SFAuthKeyName kAuthKeyToken                = @"svpn_inputtoken";                     //动态令牌认证码
-static const SFAuthKeyName kAuthKeyRadiusCode           = @"svpn_inputradius";                //Radius认证码
-static const SFAuthKeyName kAuthKeyRenewOldPassword     = @"pripsw";          //更新密码认证旧密码
-static const SFAuthKeyName kAuthKeyRenewNewPassword     = @"newpsw";          //更新密码认证新密码
-static const SFAuthKeyName kAuthKeyUserContentData      = @"kAuthKeyUserContentData";           //用户透传数据
+FOUNDATION_EXPORT SFAuthKeyName const kAuthKeyPassUsername;       // 用户名密码认证用户名信息
+FOUNDATION_EXPORT SFAuthKeyName const kAuthKeyPassPassword;       // 用户名密码认证密码信息
+FOUNDATION_EXPORT SFAuthKeyName const kAuthKeyCertPath;           // 证书认证路径信息
+FOUNDATION_EXPORT SFAuthKeyName const kAuthKeyCertPassword;       // 证书认证密码信息
+FOUNDATION_EXPORT SFAuthKeyName const kAuthKeyRandCode;           // 图形校验认证码
+FOUNDATION_EXPORT SFAuthKeyName const kAuthKeySMS;                // 短信验证码
+FOUNDATION_EXPORT SFAuthKeyName const kAuthKeyToken;              // 动态令牌认证码
+FOUNDATION_EXPORT SFAuthKeyName const kAuthKeyRadiusCode;         // Radius认证码
+FOUNDATION_EXPORT SFAuthKeyName const kAuthKeyRenewOldPassword;   // 更新密码认证旧密码
+FOUNDATION_EXPORT SFAuthKeyName const kAuthKeyRenewNewPassword;   // 更新密码认证新密码
+FOUNDATION_EXPORT SFAuthKeyName const kAuthKeyUserContentData;    // 用户透传数据
+FOUNDATION_EXPORT SFAuthKeyName const kAuthKeySecondAuthId;       // 辅助认证唯一标识
+FOUNDATION_EXPORT SFAuthKeyName const kAuthKeyAuthType;           // 认证类型钉钉/企业微信/政务微信
+FOUNDATION_EXPORT SFAuthKeyName const kAuthKeyAuthInfo;           // 认证信息
+FOUNDATION_EXPORT SFAuthKeyName const kAuthKeyAuthReason;         // 授信终端申请绑定信息
+FOUNDATION_EXPORT SFAuthKeyName const kAuthKeyAuthUnBindList;     // 授信终端申请解绑列表
+FOUNDATION_EXPORT SFAuthKeyName const kAuthKeyPrimarySmsAuthCode; // 短信主认证短信验证码
+
+/** kAuthKeyAuthType 对应的value */
+FOUNDATION_EXPORT SFAuthValueName const kAuthValueDingTalk;     // 钉钉
+FOUNDATION_EXPORT SFAuthValueName const kAuthValueQyWechat;     // 企业微信
+FOUNDATION_EXPORT SFAuthValueName const kAuthValueZwWechat;     // 政务微信
 
 /** 初始化SDK额外配置的key */
-static const NSString *kExtraFileIsolation              = @"kExtraFileIsolation";        //文件隔离额外配置
-static const NSString *kExtraSsoId                      = @"kExtraSsoId";                //增强沙箱的appid，内部使用，不暴露给外面
+FOUNDATION_EXPORT NSString * const kExtraFileIsolation; // 文件隔离额外配置
 
 /** SDK高级配置选项的key */
-static const SFOptionsName kOptionsAuthTimeOut         = @"kOptionsAuthTimeOut";       //设置认证连接超时时间
-static const SFOptionsName kOptionsAuthLanguage        = @"kOptionsAuthLanguage";      //设置认证提示语言
-static const SFOptionsName kOptionsLogReport           = @"kOptionsLogReport";         //设置日志提交选项
-
-/// SDK模式
-typedef NS_ENUM(NSInteger, SFSDKMode)
-{
-    SFSDKModeSupportVpn               = 1<<0,                                           //SDK启用VPN功能
-    SFSDKModeSupportSandbox           = 1<<1,                                           //SDK启用安全沙箱功能
-    SFSDKModeSupporVpnSandbox         = SFSDKModeSupportVpn|SFSDKModeSupportSandbox,    //SDK启动VPN和安全沙箱功能
-} ;
-
-/// SDK配置选项
-typedef NS_ENUM(NSInteger, SFSDKFlags)
-{
-    SFSDKFlagsNone                       = 1<<0,         //初始化值
-    SFSDKFlagsVpnModeTcp                 = 1<<1,         //TCP模式
-    SFSDKFlagsVpnModeL3VPN               = 1<<2,         //L3VPN模式
-    SFSDKFlagsHostApplication            = 1<<3,         //主应用
-    SFSDKFlagsSubApplication             = 1<<4,         //子应用模式
-    SFSDKFlagsEnableFileIsolation        = 1<<5,         //启用文件隔离
-    SFSDKFlagsSupportManagePolicy        = 1<<6,         //SDK支持外部(第三方)更新策略
-} ;
+FOUNDATION_EXPORT SFOptionsName const kOptionsAuthTimeOut;       // 设置认证连接超时时间
+FOUNDATION_EXPORT SFOptionsName const kOptionsAuthLanguage;      // 设置认证提示语言
+FOUNDATION_EXPORT SFOptionsName const kOptionsLogReport;         // 设置日志提交选项
+FOUNDATION_EXPORT SFOptionsName const kOptionsCapturePackage;    // 设置开启抓包
+FOUNDATION_EXPORT SFOptionsName const kOptionsSdkRandCodeUI;     // 设置使用SDK图形验证码UI
+FOUNDATION_EXPORT SFOptionsName const kOptionsSdkTrustDeviceUI;  // 设置使用SDK授信终端展示UI
 
 /// SDK Option选项
 typedef NS_ENUM(NSInteger, SFSDKOption)
@@ -64,7 +62,9 @@ typedef NS_ENUM(NSInteger, SFSDKOption)
     SFSDKOptionsLogReport                = 2,            //设置日志提交选项
     SFSDKOptionsCapturePackage           = 3,            //设置开启抓包
     SFSDKOptionAworkDisplayName          = 4,            //awork的名称
-} ;
+    SFSDKOptionUsingSdkRandCodeUI        = 5,            //设置使用SDK图形验证码UI
+    SFSDKOptionUsingSdkTrustDeviceUI     = 6,            //设置使用SDK授信终端展示页面
+};
 
 /// SDK Extras选项
 typedef NS_ENUM(NSInteger, SFSDKExtras)
@@ -72,58 +72,7 @@ typedef NS_ENUM(NSInteger, SFSDKExtras)
     SFSDKExtrasAworkCurrentVersion       = 0,            //awork版本号
     SFSDKExtraSsoId                      = 1,            //增强沙箱的ssoid
     SFSDKExtrasEnableAppStore            = 2,            //启用应用商店
-} ;
-
-/// 认证状态
-typedef NS_ENUM(NSInteger, SFAuthStatus)
-{
-    SFAuthStatusNone         = 0,      //未认证
-    SFAuthStatusLogining     = 1,      //正在认证
-    SFAuthStatusPrimaryAuthOK= 2,      //主认证成功
-    SFAuthStatusAuthOk       = 3,      //认证成功
-    SFAuthStatusLogouting    = 4,      //正在注销
-    SFAuthStatusLogouted     = 5,      //已经注销
-} ;
-
-/// VPN隧道状态
-typedef NS_ENUM(NSInteger, SFTunnelStatus)
-{
-    SFTunnelStatusInit             = 0,        //VPN隧道初始化
-    SFTunnelStatusOnline           = 1,        //VPN隧道在线
-    SFTunnelStatusReconnecting     = 2,        //VPN隧道正在连接
-    SFTunnelStatusOffline          = 3,        //VPN隧道离线
-    SFTunnelStatusExit             = 4,        //VPN隧道退出
-    SFTunnelStatusExtionError      = 100,      //VPN隧道插件出错
-} ;
-
-/// 定义支持的认证类型
-typedef NS_ENUM(NSInteger, SFAuthType)
-{
-    SFAuthTypeCertificate       = 0,         //证书认证
-    SFAuthTypePassword          = 1,         //用户名密码认证
-    SFAuthTypeSMS               = 2,         //短信认证
-    SFAuthTypeHardId            = 4,         //硬件特征码认证, 内部认证
-    SFAuthTypeRadius            = 6,         //挑战认证或者Radius认证
-    SFAuthTypeToken             = 7,         //令牌认证
-    SFAuthTypeAuthor            = 10,        //授权认证,  内部认证
-    SFAuthTypeCode              = 11,        //钉钉code认证 无
-    SFAuthTypeSession           = 16,        //Session认证 无
-    SFAuthTypeNone              = 17,        //无认证
-    SFAuthTypeRenewPassword     = 18,        //强制修改密码认证
-    SFAuthTypeRenewPassword2    = 20,        //强制修改密码认证,处理之前没有输入密码的情况。 不支持
-    SFAuthTypeRand              = 22,        //图形校验码认证
-    SFAuthTypeTicket            =  1<<11,     //Ticket认证
-    SFAuthTypeUnknow            = -1,        //未知认证类型
-} ;
-
-/// 注销原因类型
-typedef NS_ENUM(NSInteger, SFLogoutType)
-{
-    SFLogoutTypeUser                = 0,    //用户注销
-    SFLogoutTypeTicketAuthError     = 1,    //免密失败
-    SFLogoutTypeServerShutdown      = 2,    //服务端shutdown
-    SFLogoutTypeAuthorError         = 3,    //授权失败
-} ;
+};
 
 /// 错误码
 typedef NS_ENUM(NSInteger, SF_ERROR_CODE)
@@ -206,7 +155,7 @@ typedef NS_ENUM(NSInteger, SF_ERROR_CODE)
     SF_ERROR_CONNECT_VPN_FAILED               = 2001,        //连接VPN服务器错误，请检查网络
     SF_ERROR_URL_INVALID                      = 2002,        //VPN的URL为空
     SF_ERROR_DOMAN_RESOLVE_FAILED             = 2003,        //域名解析失败
-    SF_ERROR_CRACKED_PHONE                    = 2004,        //越狱手机禁止登陆
+    SF_ERROR_CRACKED_PHONE                    = 2004,        //越狱手机禁止登录
     SF_ERROR_SELECT_LINE_FAILED               = 2005,        //VPN选路失败
     SF_ERROR_NET_INVALID                      = 2006,        //网络不可用
     SF_ERROR_ADDRESS_FORMAT                   = 2007,        //vpn地址格式有误
@@ -275,6 +224,46 @@ typedef NS_ENUM(NSInteger, SFUpdatePolicyCode)
     SFUpdatePolicyInnerError         = 3,    //内部错误
 } ;
 
+/*! @brief 获取修改密码的密码规则block
+ *
+ * @param displayMessage 修改密码的密码规则展示信息
+ * @param detailRuleJson 修改密码的密码规则的详细json
+ */ //
+typedef void (^ SFGetPswStrategyBlock)(NSString *__nullable displayMessage, NSString *__nullable detailRuleJson);
 
+/*! @brief 重置密码的block
+ * 如果为nil则修改成功;否则修改密码错误,读取NSError的domain
+ * @param error 重置密码错误
+ */
+typedef void (^ SFResetPasswordBlock)(NSError *__nullable error);
+
+/*! @brief 重新获取短信校验码的block
+ * 如果为nil则获取短信验证码成功；否则获取短信验证码失败
+ * @param message 短信验证码信息
+ * @param error 重新获取短信校验码错误
+ */
+typedef void (^ SFRegetSmsCodeBlock)(SFSmsMessage *__nullable message, NSError *__nullable error);
+
+/*! @brief 重新获取图形校验码的block
+ *
+ * @param randcode 短信验证码信息
+ * @param error 重新获取图形校验码错误
+ */
+typedef void (^ SFRegetRandCodeBlock)(NSData *__nullable randcode, NSError *__nullable error);
+
+/*! @brief 选路block
+ *
+ * @param error 选路结果错误
+ */
+typedef void (^ SFSelectLineBlock)(NSError *__nullable error);
+
+/*! @brief 设置SPA的结果回调
+ *
+ * @param result 对SPA配置解析到的结果, 登录的URL地址
+ * @param error 如果error有值,代表设置配置遇到了错误
+ */
+typedef void (^ SFSetSpaConfigBlock)(NSString *__nullable result, NSError *__nullable error);
+
+NS_ASSUME_NONNULL_END
 
 #endif /* SFMobileSecurityTypes_h */

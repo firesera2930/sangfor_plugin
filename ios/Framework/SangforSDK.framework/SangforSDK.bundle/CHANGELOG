@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ChangeLogs>
+	<ChangeLog Version="2.4.10.1" SubVersion="" Date="2024-04-30">
+		<ChangeList>修复网上问题</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.4.9.1" SubVersion="" Date="2024-02-23">
+		<ChangeList>修复网上问题</ChangeList>
+		<ChangeList>SDK支持增强认证</ChangeList>
+		<ChangeList>SDK支持水印样式自定义</ChangeList>
+		<ChangeList>SDK支持辅助认证多选一</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.4.8.1" SubVersion="" Date="2024-01-05">
+		<ChangeList>修复网上问题</ChangeList>
+		<ChangeList>SDK支持授信终端认证</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.4.6.1" SubVersion="" Date="2023-12-01">
+		<ChangeList>修复网上问题</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.4.4.1" SubVersion="" Date="2023-11-01">
+		<ChangeList>修复网上问题</ChangeList>
+		<ChangeList>IOS 封装支持ABM</ChangeList>
+		<ChangeList>支持SDK Bypass</ChangeList>
+		<ChangeList>移动端支持ROOT、无锁屏密码监测</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.4.2.1" SubVersion="" Date="2023-09-28">
+		<ChangeList>修复网上问题</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.3.10.1" SubVersion="" Date="2023-08-15">
+		<ChangeList>合入网上问题</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.3.6.1" SubVersion="" Date="2023-07-07">
+		<ChangeList>支持交互式远程日志获取功能</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.3.4.2" SubVersion="" Date="2023-06-07">
+		<ChangeList>SPA支持一次一码</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.3.4.1" SubVersion="" Date="2023-05-19">
+		<ChangeList>优化日志打印</ChangeList>
+		<ChangeList>解决相关网上问题</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.3.2.1" SubVersion="" Date="2023-04-28">
+		<ChangeList>优化UDP SPA的稳定性</ChangeList>
+		<ChangeList>优化本地数据库</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.16.1" SubVersion="" Date="2023-03-31">
+		<ChangeList>历史问题修复</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.15.7" SubVersion="" Date="2023-03-10">
+		<ChangeList>优化网络隔离内置规则</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.15.6" SubVersion="" Date="2023-02-17">
+		<ChangeList>支持动态密码规则下发</ChangeList>
+		<ChangeList>VPN 支持多进程</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.15.5" SubVersion="" Date="2023-01-18">
+		<ChangeList>SDK支持主动修改密码</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.15.2" SubVersion="" Date="2022-12-30">
+		<ChangeList>自动封装支持封装集成SDK的应用</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.14.4" SubVersion="" Date="2022-11-25">
+		<ChangeList>iOS SDK支持图形验证码</ChangeList>
+		<ChangeList>移动端优化网络隔离日志，增加toast弹窗提示</ChangeList>
+		<ChangeList>移动端支持内网DNS下发</ChangeList>
+		<ChangeList>移动端性能打点日志优化</ChangeList>
+		<ChangeList>网络隔离增加高德、百度、腾讯地图默认配置项</ChangeList>
+		<ChangeList>iOS 主从场景支持传递原应用启动子应用的参数</ChangeList>
+		<ChangeList>优化控制台封装加固应用的帮助文档</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.14.2" SubVersion="" Date="2022-11-04">
+		<ChangeList>Android增加短信主认证和第三方认证作为主场景在Demo和文档进行说明</ChangeList>
+		<ChangeList>SDK集成文档增加零信任隐私协议</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.14.1" SubVersion="" Date="2022-10-21">
+		<ChangeList>Android 主从场景支持传递原应用启动子应用的参数</ChangeList>
+		<ChangeList>Android SDK支持图形验证码</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.12.3" SubVersion="" Date="2022-09-30">
+		<ChangeList>SDK支持L3VPN模式</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.12.1" SubVersion="" Date="2022-09-09">
+		<ChangeList>支持鸿蒙3.0</ChangeList>
+		<ChangeList>支持iOS16</ChangeList>
+		<ChangeList>支持封装子应用日志分享</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.11.1" SubVersion="" Date="2022-08-26">
+		<ChangeList>支持全网资源</ChangeList>
+		<ChangeList>主应用场景支持鸿蒙3.0</ChangeList>
+		<ChangeList>支持IPV6接入</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.10.1" SubVersion="" Date="2022-08-12">
+		<ChangeList>Android13的支持</ChangeList>
+		<ChangeList>移动端登录限制</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.9.1" SubVersion="" Date="2022-07-22">
+		<ChangeList>Android封装主应用支持国密，支持授信终端</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.6.2" SubVersion="" Date="2022-07-20">
+		<ChangeList>集成SDK发布</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.6.2" SubVersion="" Date="2022-07-12">
+		<ChangeList>封装SDK发布</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.6.2" SubVersion="" Date="2022-07-05">
+		<ChangeList>新架构aTrust bug修复</ChangeList>
+		<ChangeList>认证流程bug、数据迁移bug</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.6.1" SubVersion="" Date="2022-06-24">
+		<ChangeList>重构aTrust上架</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.3.0.2.10" SubVersion="" Date="2022-03-31">
+		<ChangeList>新架构sdk</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.3.0.2.1" SubVersion="" Date="2022-03-31">
+		<ChangeList>封装aTrust app子应用支持单点登录</ChangeList>
+		<ChangeList>支持UEM分布式集群</ChangeList>
+		<ChangeList>控制台获取远程终端日志</ChangeList>
+		<ChangeList>SPA一人一码</ChangeList>
+		<ChangeList>SPA支持免域名</ChangeList>
+		<ChangeList>移动端支持国密</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.3.0.1.1" SubVersion="" Date="2022-03-15">
+		<ChangeList>支持网络隔离</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.0.12.2" SubVersion="" Date="2022-01-12">
+		<ChangeList>SDP、VPN二合一</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.0.12.1" SubVersion="" Date="2021-12-30">
+		<ChangeList>封装子应用支持应用锁</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.0.11.1" SubVersion="" Date="2021-12-27">
+		<ChangeList>封装应用支持第三方服务器下载</ChangeList>
+		<ChangeList>支持udp spa</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.0.10.2" SubVersion="" Date="2021-12-23">
+		<ChangeList>SDP SDK兼容Arm64</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.0.7.1" SubVersion="" Date="2021-09-27">
+		<ChangeList>H5优化</ChangeList>
+		<ChangeList>遗留TD解决</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.2.0.6.1" SubVersion="" Date="2021-08-31">
+		<ChangeList>Android sdk支持完整沙箱策略</ChangeList>
+		<ChangeList>iOS sdk支持后台模糊、分享隔离、剪切板隔离</ChangeList>
+	</ChangeLog>
+</ChangeLogs>
