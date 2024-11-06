@@ -6,13 +6,14 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
-import com.sangfor.sdk.SFMobileSecuritySDK;
+import com.sangfor.sdk.SFUemSDK;
 import com.sangfor.sdk.base.SFAuthResultListener;
 import com.sangfor.sdk.base.SFAuthStatus;
 import com.sangfor.sdk.base.SFAuthType;
 import com.sangfor.sdk.base.SFBaseMessage;
 import com.sangfor.sdk.base.SFLogoutListener;
 import com.sangfor.sdk.base.SFLogoutType;
+import com.sangfor.sdk.base.SFSDKOptions;
 import com.sangfor.sdk.utils.SFLogN;
 
 import java.util.Map;
@@ -97,7 +98,14 @@ public class SangforPlugin implements FlutterPlugin, MethodCallHandler, EventCha
      * @param apiKeyMap
      */
     private void startPasswordAuth(Map apiKeyMap, Result result) {
+//        boolean autoTicketSuccess = SFUemSDK.getInstance().startAutoTicket();
+//        if (autoTicketSuccess) {
+//            System.out.println("免密登录成功!");
+//            return;
+//        }
         if (null != apiKeyMap) {
+            SFUemSDK.getInstance().getSFConfig().setOptions(SFSDKOptions.OPTIONS_KEY_RAND_SDK, "0");
+
             if (apiKeyMap.containsKey("address") && !TextUtils.isEmpty((String) apiKeyMap.get("address"))) {
                 mVpnAddress = (String) apiKeyMap.get("address");
             }
@@ -107,10 +115,9 @@ public class SangforPlugin implements FlutterPlugin, MethodCallHandler, EventCha
             if (apiKeyMap.containsKey("userPassword") && !TextUtils.isEmpty((String) apiKeyMap.get("userPassword"))) {
                 mUserPassword = (String) apiKeyMap.get("userPassword");
             }
-            SFMobileSecuritySDK.getInstance().setAuthResultListener(this);
-
-            SFMobileSecuritySDK.getInstance().startPasswordAuth(mVpnAddress, mUserName, mUserPassword);
-            SFMobileSecuritySDK.getInstance().registerLogoutListener(this);
+            SFUemSDK.getInstance().setAuthResultListener(this);
+            SFUemSDK.getInstance().startPasswordAuth(mVpnAddress, mUserName, mUserPassword);
+            SFUemSDK.getInstance().registerLogoutListener(this);
         }
     }
 
@@ -136,7 +143,7 @@ public class SangforPlugin implements FlutterPlugin, MethodCallHandler, EventCha
      */
     private void cancelAuth(Map apiKeyMap) {
         if (null != apiKeyMap) {
-            SFMobileSecuritySDK.getInstance().cancelAuth();
+            SFUemSDK.getInstance().cancelAuth();
         }
     }
 
@@ -144,12 +151,12 @@ public class SangforPlugin implements FlutterPlugin, MethodCallHandler, EventCha
      * 登出logout
      */
     private void logout() {
-        SFMobileSecuritySDK.getInstance().logout();
+        SFUemSDK.getInstance().logout();
         System.out.println("注销VPN!");
     }
 
     private int getAuthStatus() {
-        SFAuthStatus sfAuthStatus = SFMobileSecuritySDK.getInstance().getAuthStatus();
+        SFAuthStatus sfAuthStatus = SFUemSDK.getInstance().getAuthStatus();
         return sfAuthStatus.intValue();
     }
 
