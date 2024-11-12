@@ -1,5 +1,5 @@
 #import "SangforPlugin.h"
-#import <SangforSDK/SFMobileSecuritySDK.h>
+#import <SangforSDK/SFUemSDK.h>
 
 @interface SangforPlugin ()<SFAuthResultDelegate,FlutterStreamHandler,SFAuthResultDelegate,SFLogoutDelegate>
 
@@ -14,8 +14,8 @@ static int statusCode = 0;
 - (instancetype)init {
     self = [super init];
     if (self) {
-        [[SFMobileSecuritySDK sharedInstance] initSDK:SFSDKModeSupportMutable flags:SFSDKFlagsHostApplication|SFSDKFlagsVpnModeTcp extra:nil];
-        [[SFMobileSecuritySDK sharedInstance] setAuthResultDelegate:self];
+        [[SFUemSDK sharedInstance] initSDK:SFSDKModeSupportMutable flags:SFSDKFlagsHostApplication|SFSDKFlagsVpnModeTcp extra:nil];
+        [[SFUemSDK sharedInstance] setAuthResultDelegate:self];
     }
     return self;
 }
@@ -45,17 +45,9 @@ static int statusCode = 0;
 - (FlutterError*)onListenWithArguments:(id _Nullable)arguments
                              eventSink:(FlutterEventSink)eventSink {
     self.eventSink = eventSink;
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:2
-                                                  target:self
-                                                selector:@selector(sendEvent)
-                                                userInfo:nil
-                                                 repeats:YES];
     return nil;
 }
 - (FlutterError* _Nullable)onCancelWithArguments:(id _Nullable)arguments {
-    // 实现取消的逻辑
-    [self.timer invalidate];
-    self.timer = nil;
     self.eventSink = nil;
     return nil;
 }
@@ -69,12 +61,11 @@ static int statusCode = 0;
     NSURL *vpnUrl = [[NSURL alloc] initWithString:vpnUrlStr];
     NSString *username = call.arguments[@"userName"];
     NSString *password = call.arguments[@"userPassword"];
-   BOOL isSusees= [[SFMobileSecuritySDK sharedInstance] startPasswordAuth:vpnUrl userName:username password:password];
-    NSLog(@"isSusees: %@", isSusees ? @"YES" : @"NO");
+    [[SFUemSDK sharedInstance] startPasswordAuth:vpnUrl userName:username password:password];
 }
 
 - (void) getAuthStatus{
-    SFAuthStatus sfAuthStatus= [[SFMobileSecuritySDK sharedInstance] getAuthStatus];
+    SFAuthStatus sfAuthStatus= [[SFUemSDK sharedInstance] getAuthStatus];
     /** SFAuthStatusNone         = 0,      //未认证
     SFAuthStatusLogining     = 1,      //正在认证
     SFAuthStatusPrimaryAuthOK= 2,      //主认证成功
@@ -109,8 +100,9 @@ static int statusCode = 0;
 }
 
 - (void)logout{
-    [[SFMobileSecuritySDK sharedInstance] registerLogoutDelegate:self];
-    [[SFMobileSecuritySDK sharedInstance] logout];
+    [[SFUemSDK sharedInstance] registerLogoutDelegate:self];
+    [[SFUemSDK sharedInstance] logout];
+    [self sendEvent];
 }
 
 - (void)sendEvent {
@@ -130,6 +122,7 @@ static int statusCode = 0;
 - (void)onAuthFailed:(BaseMessage *)msg
 {
     flutterResult = @"失败";
+    [self sendEvent];
     NSLog(@"onAuthFailed：%@", flutterResult);
 }
 
@@ -149,6 +142,7 @@ static int statusCode = 0;
 - (void)onAuthSuccess:(BaseMessage *)msg
 {
     flutterResult = @"成功";
+    [self sendEvent];
     NSLog(@"onAuthSuccess：%@", flutterResult);
 }
 ///**
@@ -163,6 +157,7 @@ static int statusCode = 0;
 }
 
 - (void)onLogout:(SFLogoutType)type message:(BaseMessage *)msg{
+    [self sendEvent];
     NSLog(@"type: %ld", (long)type);
 }
 

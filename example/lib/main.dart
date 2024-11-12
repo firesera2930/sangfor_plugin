@@ -35,9 +35,9 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   String _code = '0';
 
-  SangForModel sangForModel = SangForModel(address: 'https://your service IP', userName: 'your account', userPassword: 'your password');
+  // SangForModel sangForModel = SangForModel(address: 'https://your service IP', userName: 'your account', userPassword: 'your password');
 
-  // SangForModel sangForModel = SangForModel(address: 'https://183.222.57.218:4455', userName: 'admin', userPassword: 'Krd@20220107');
+  SangForModel sangForModel = SangForModel(address: 'https://111.75.176.154:4455', userName: 'consumer', userPassword: 'Nfjk@2022');
   String _receivedData = '';
   @override
   void initState() {

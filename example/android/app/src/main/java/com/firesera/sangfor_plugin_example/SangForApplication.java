@@ -34,7 +34,7 @@ public class SangForApplication extends FlutterApplication {
         int sdkFlags = SFSDKFlags.FLAGS_HOST_APPLICATION;
         sdkFlags |= SFSDKFlags.FLAGS_VPN_MODE_TCP;
 
-        SFUemSDK.getInstance().initSDK(context, SFSDKMode.MODE_SUPPORT_MUTABLE, sdkFlags, extra);
+        SFUemSDK.getInstance().initSDK(context, SFSDKMode.MODE_SUPPORT_MUTABLE, sdkFlags, null);
     }
 }
 

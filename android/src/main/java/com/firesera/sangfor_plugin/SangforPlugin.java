@@ -37,7 +37,7 @@ public class SangforPlugin implements FlutterPlugin, MethodCallHandler, EventCha
     private EventChannel eventChannel;
     private EventChannel.EventSink eventSink;
     // 事件 Handler
-    private Handler eventHandler;
+//    private Handler eventHandler;
 
     private Context mContext = null;
 
@@ -58,6 +58,8 @@ public class SangforPlugin implements FlutterPlugin, MethodCallHandler, EventCha
             channel.setMethodCallHandler(this);
             eventChannel = new EventChannel(flutterPluginBinding.getBinaryMessenger(), "sangfor_plugin_event");
             eventChannel.setStreamHandler(this);
+            SFUemSDK.getInstance().setAuthResultListener(this);
+            SFUemSDK.getInstance().registerLogoutListener(this);
         }
     }
 
@@ -115,26 +117,25 @@ public class SangforPlugin implements FlutterPlugin, MethodCallHandler, EventCha
             if (apiKeyMap.containsKey("userPassword") && !TextUtils.isEmpty((String) apiKeyMap.get("userPassword"))) {
                 mUserPassword = (String) apiKeyMap.get("userPassword");
             }
-            SFUemSDK.getInstance().setAuthResultListener(this);
             SFUemSDK.getInstance().startPasswordAuth(mVpnAddress, mUserName, mUserPassword);
-            SFUemSDK.getInstance().registerLogoutListener(this);
+
         }
     }
 
     //推送消息给Event数据流，flutter层负责监听数据流
-    private void sendEventToStream() {
-        eventHandler = new Handler();
-        eventHandler.post(runnable);
-    }
+//    private void sendEventToStream() {
+//
+//        eventHandler.post(runnable);
+//    }
 
-    private final Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            sfAuthStatusCode = getAuthStatus();
-            eventSink.success(sfAuthStatusCode);
-            eventHandler.postDelayed(this, 2000);
-        }
-    };
+//    private final Runnable runnable = new Runnable() {
+//        @Override
+//        public void run() {
+//            sfAuthStatusCode = getAuthStatus();
+//            eventSink.success(sfAuthStatusCode);
+//            eventHandler.postDelayed(this, 2000);
+//        }
+//    };
 
     /**
      * 清除授权cancelAuth
@@ -164,39 +165,53 @@ public class SangforPlugin implements FlutterPlugin, MethodCallHandler, EventCha
     @Override
     public void onAuthSuccess(SFBaseMessage sfBaseMessage) {
         this.sfBaseMessage = sfBaseMessage;
-        SFLogN.info(TAG, "认证成功！");
+        if (eventSink != null) {
+            eventSink.success(getAuthStatus());
+            SFLogN.info(TAG, "认证成功！");
+        }
+
     }
 
     @Override
     public void onAuthFailed(SFBaseMessage sfBaseMessage) {
         this.sfBaseMessage = sfBaseMessage;
-        SFLogN.info(TAG, "认证失败！");
+        if (eventSink != null) {
+            eventSink.success(getAuthStatus());
+            SFLogN.info(TAG, "认证失败！");
+        }
+
     }
 
 
     @Override
     public void onAuthProgress(SFAuthType sfAuthType, SFBaseMessage sfBaseMessage) {
+        System.out.println("onAuthProgress-sfBaseMessage:  " + sfBaseMessage);
         this.sfBaseMessage = sfBaseMessage;
-        SFLogN.info(TAG, "登录中...");
+        if (eventSink != null) {
+            eventSink.success(getAuthStatus());
+            SFLogN.info(TAG, "登录中...");
+        }
     }
 
     @Override
     public void onListen(Object arguments, EventChannel.EventSink events) {
         // eventChannel 建立连接
         eventSink = events;
-        sendEventToStream();
     }
 
     @Override
     public void onCancel(Object arguments) {
         eventSink = null;
-        eventHandler.removeCallbacks(runnable);
-        eventHandler = null;
     }
 
 
     @Override
     public void onLogout(SFLogoutType sfLogoutType, SFBaseMessage sfBaseMessage) {
+
+        if (eventSink != null) {
+            eventSink.success(getAuthStatus());
+            SFLogN.info(TAG, "登录中...");
+        }
         System.out.println("onLogout-sfLogoutType" + sfLogoutType);
         System.out.println("onLogout-sfBaseMessage" + sfBaseMessage.mErrCode);
     }
