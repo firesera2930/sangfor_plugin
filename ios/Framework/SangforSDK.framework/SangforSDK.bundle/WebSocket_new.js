@@ -391,9 +391,17 @@
    window.SFWebSocket = SFWebSocket;
 
    // WebSocket hook
-   WebSocket = function(h, proto) {
+   WebSocket = function (h, proto) {
      if (h.startsWith("ws://")) {
-       return new window.SFWebSocketProxy.RealWebSocket("ws://127.0.0.1:%d/param?host=" + h, proto);
+      // ws使用wss方案，SDK根据特定的APP来设置此标识
+      // [网上问题][Q2024071601448]中信金融文档预览异常
+      // 目前推测有依赖ws返回的cookie，当前ws方案会导致websocket请求的cookie丢失
+      // 使用wss方案来解决ws的cookie丢失问题，但只支持iOS13及以上的系统版本
+       if (window.sf_ws_use_wss_case) {
+         return new window.SFWebSocket(h, proto);
+       } else {
+         return new window.SFWebSocketProxy.RealWebSocket("ws://127.0.0.1:%d/param?host=" + h, proto);
+       }
      }
      return new window.SFWebSocket(h, proto);
    }

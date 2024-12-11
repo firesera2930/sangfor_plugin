@@ -68,6 +68,15 @@ var __values = (this && this.__values) || function (o) {
  
         }
     }
+
+    function sf_sendEvent(event) {
+        var json = JSON.stringify(event);
+        if (window.sf_use_message_handler) {
+            return window.webkit.messageHandlers.sf_ajaxBodyHandler.postMessage(json);
+        }
+        window.prompt(event.title, json)
+    }
+
     let sf_interceptors = [];
 
     function interceptor(fetch, ...args) {
@@ -726,7 +735,8 @@ var __values = (this && this.__values) || function (o) {
                                 // 特殊处理字节数据
                                 data = Array.from(data);
                                 xhr.requestParamsToOC.data = data;
-                                window.prompt("FixDropBodyByte", JSON.stringify(xhr.requestParamsToOC))
+                                xhr.requestParamsToOC.title = 'FixDropBodyByte'
+                                sf_sendEvent(xhr.requestParamsToOC)
                                 sendLogToOC("FixDropBodyByte.")
                             }
                         } else if((data instanceof FormData) || (window.sf_oriFormData && data instanceof window.sf_oriFormData)) {
@@ -759,9 +769,12 @@ var __values = (this && this.__values) || function (o) {
                             SFJSBridgeUtil.convertFormDataToJson(data, function (json) {
                                 sendLogToOC("parse formData json:" + JSON.stringify(json));
                                 xhr.requestParamsToOC.data = json;
-                                window.prompt("FixDropBodyFormData", JSON.stringify(xhr.requestParamsToOC))
+                                xhr.requestParamsToOC.title = "FixDropBodyFormData"
+                                sf_sendEvent(xhr.requestParamsToOC)
                              });
-						} else if (data instanceof File) {
+						} else if (data instanceof File || data instanceof Blob) {
+                            // [网上问题][Q2024061901046]图片上传失败，需要兼容blob格式
+                            // Blob的处理可以复用File的逻辑
                             //iOS16也会有body丢失的问题，测试上传一个0.2M的普通文件也会丢失body
 							sendLogToOC("body data is File...");
 							var form = new FormData();
@@ -774,7 +787,8 @@ var __values = (this && this.__values) || function (o) {
 
 							    sendLogToOC("parse formData json:" + JSON.stringify(json));
 							    xhr.requestParamsToOC.data = json;
-							    window.prompt("FixDropBodyFormData", JSON.stringify(xhr.requestParamsToOC))
+                                xhr.requestParamsToOC.title = "FixDropBodyFormData"
+                                sf_sendEvent(xhr.requestParamsToOC)
 							});
 						} else {
                             if(xhr.iosVersion && (xhr.iosVersion < 12)) {
@@ -782,7 +796,8 @@ var __values = (this && this.__values) || function (o) {
                                 xhr.setRequestHeader("sangfor_sftaskid", xhr.requestParamsToOC.sangfor_sftaskid)
                                 xhr.setRequestHeader("sangfor_sftaskid_cors" + xhr.requestParamsToOC.sangfor_sftaskid, "1")
 								xhr.requestParamsToOC.sendBody = data.toString()
-                                window.prompt("FixDropBody4XHR", JSON.stringify(xhr.requestParamsToOC))
+                                xhr.requestParamsToOC.title = "FixDropBody4XHR"
+                                sf_sendEvent(xhr.requestParamsToOC)
                             }
                         }
                      }
@@ -936,7 +951,8 @@ var __values = (this && this.__values) || function (o) {
                             // 特殊处理字节数据
                             body = Array.from(body);
                             requestParamsToOC.data = body;
-                            window.prompt("FixDropBodyByte", JSON.stringify(requestParamsToOC))
+                            requestParamsToOC.title = 'FixDropBodyByte'
+                            sf_sendEvent(requestParamsToOC)
                             sendLogToOC("FixDropBodyByte.")
                         }
                     } else if((body instanceof FormData) || (window.sf_oriFormData && body instanceof window.sf_oriFormData)) {
@@ -951,14 +967,15 @@ var __values = (this && this.__values) || function (o) {
                             
                             sendLogToOC("parse formData json:" + JSON.stringify(json));
                             requestParamsToOC.data = json;
-                            window.prompt("FixDropBodyFormData", JSON.stringify(requestParamsToOC))
+                            requestParamsToOC.title = "FixDropBodyFormData"
+                            sf_sendEvent(requestParamsToOC)
                          });
                     } else {
                         if(iosVersion && (iosVersion < 12)) {
                             sendLogToOC("body data is Others such as String...");
-
                             requestParamsToOC.sendBody = body
-                            window.prompt("FixDropBody4Fetch", JSON.stringify(requestParamsToOC))
+                            requestParamsToOC.title = "FixDropBody4Fetch"
+                            sf_sendEvent(requestParamsToOC)
                         }
                     }
                 }

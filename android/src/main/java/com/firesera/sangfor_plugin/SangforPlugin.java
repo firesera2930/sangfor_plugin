@@ -117,6 +117,7 @@ public class SangforPlugin implements FlutterPlugin, MethodCallHandler, EventCha
             if (apiKeyMap.containsKey("userPassword") && !TextUtils.isEmpty((String) apiKeyMap.get("userPassword"))) {
                 mUserPassword = (String) apiKeyMap.get("userPassword");
             }
+            SFLogN.info(TAG, "mVpnAddress:"+mVpnAddress + "mUserName:"+mUserName+"mUserPassword:"+mUserPassword);
             SFUemSDK.getInstance().startPasswordAuth(mVpnAddress, mUserName, mUserPassword);
 
         }

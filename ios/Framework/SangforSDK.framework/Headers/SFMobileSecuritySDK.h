@@ -386,6 +386,17 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param delegate 代理对象
 - (void)setTunnelStatusDelegate:(nullable id<SFTunnelStatusDelegate>)delegate;
 
+
+#pragma mark - 定制
+/**
+  * @brief  重庆大数据 钉钉登录认证对接服务端
+  * @discussion
+  * 调用方法与服务端完成认证流程
+  * @param url vpn接入地址
+  * @param info 服务端需要的认证信息
+  */
+- (BOOL)startExclusiveDingTalkAuth: (NSString*)url info:(NSDictionary<NSString*, NSString*>*)info;
+
 #pragma mark - 工具方法
 
 /**
@@ -447,6 +458,24 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark --通用事件传递接口
 - (void)setGenericNotificationDelegate:(id<SFGenericNotificationDelegate>)delegate;
+
+#pragma mark --AES加密解密接口
+
+/**
+ * AES加密
+ * @param key  加密秘钥
+ * @param iv   偏移量
+ * @param data 加密数据
+ */
+- (NSString *)EncodeAES:(NSString *)key iv:(NSString *)iv data:(NSString *)data;
+
+/**
+ * AES解密
+ * @param key  解密秘钥
+ * @param iv   偏移量
+ * @param data 解密数据
+ */
+- (NSString *)DecodeAES:(NSString *)key iv:(NSString *)iv data:(NSString *)data;
 
 @end
 

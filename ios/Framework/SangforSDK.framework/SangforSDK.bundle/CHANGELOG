@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ChangeLogs>
+	<ChangeLog Version="2.5.10.1" SubVersion="" Date="2024-10-20">
+		<ChangeList>修复网上问题</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.5.6.1" SubVersion="" Date="2024-08-16">
+		<ChangeList>修复网上问题</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.5.4.2" SubVersion="" Date="2024-07-24">
+		<ChangeList>修复网上问题</ChangeList>
+	</ChangeLog>
+	<ChangeLog Version="2.5.4.1" SubVersion="" Date="2024-07-05">
+		<ChangeList>修复网上问题</ChangeList>
+		<ChangeList>支持Android 15</ChangeList>
+	</ChangeLog>
 	<ChangeLog Version="2.4.10.1" SubVersion="" Date="2024-04-30">
 		<ChangeList>修复网上问题</ChangeList>
 	</ChangeLog>

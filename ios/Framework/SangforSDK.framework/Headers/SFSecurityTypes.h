@@ -51,7 +51,7 @@ typedef NS_ENUM(NSInteger, SFSDKFlags) {
 typedef NS_ENUM(NSInteger, SFAuthStatus) {
     SFAuthStatusNone         = 0,      //未认证
     SFAuthStatusLogining     = 1,      //正在认证
-    SFAuthStatusPrimaryAuthOK= 2,      //主认证成功
+    SFAuthStatusPrimaryAuthOK = 2,      //主认证成功
     SFAuthStatusAuthOk       = 3,      //认证成功
     SFAuthStatusLogouting    = 4,      //正在注销
     SFAuthStatusLogouted     = 5,      //已经注销
@@ -119,6 +119,9 @@ typedef NS_ENUM(NSInteger, SFAuthType)
     SFAuthTypeCAS                        = 40,        // cas认证
     SFAuthTypePrimarySMSPre              = 41,        // 短信主认证前置处理
     SFAuthTypePrimarySMS                 = 42,        // 短信主认证
+
+    
+    SFAuthTypeExdingTalk               = (1<<10),   //专有钉钉登录
 
     SFAuthTypeUnknown           = -1,        //未知认证类型
 };
